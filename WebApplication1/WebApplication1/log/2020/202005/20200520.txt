@@ -1,0 +1,50 @@
+记录时间：2020-05-20 23:20:28,684  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:20:36,622  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:20:44,876  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:21:20,902  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-20 23:21:48,165  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:22:32,619  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:42:31,929  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-20 23:42:38,571  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:42:48,766  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-20 23:42:57,749  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:43:06,942  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-20 23:43:08,034  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-20 23:43:08,234  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-20 23:43:10,547  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:50:47,244  日志级别：ERROR 错误描述：[VisitorLogin]:License == null
+ 
+记录时间：2020-05-20 23:50:54,783  日志级别：ERROR 错误描述：[VisitorLogin]:userLogin == null
+ 
+记录时间：2020-05-20 23:50:57,563  日志级别：ERROR 错误描述：[VisitorLogin]:userLogin == null
+ 
+记录时间：2020-05-20 23:51:00,293  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-20 23:54:52,303  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-20 23:55:02,377  日志级别：ERROR 错误描述：[VisitorLogin]：License is wrong
+ 
+记录时间：2020-05-20 23:55:27,647  日志级别：ERROR 错误描述：[VisitorLogin]：License is wrong
+ 
+记录时间：2020-05-20 23:55:29,317  日志级别：ERROR 错误描述：[VisitorLogin]：License is wrong
+ 
+记录时间：2020-05-20 23:56:20,126  日志级别：ERROR 错误描述：[VisitorLogin]：License is wrong
+ 
+记录时间：2020-05-20 23:57:20,420  日志级别：ERROR 错误描述：[VisitorLogin]:License == null
+ 
+记录时间：2020-05-20 23:57:46,527  日志级别：ERROR 错误描述：[VisitorLogin]:userLogin == null
+ 

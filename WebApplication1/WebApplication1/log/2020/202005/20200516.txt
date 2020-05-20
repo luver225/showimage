@@ -1,0 +1,8 @@
+记录时间：2020-05-16 17:23:33,984  日志级别：ERROR 错误描述：[UserLogin]:userLogin == null
+ 
+记录时间：2020-05-16 17:23:33,996  日志级别：ERROR 错误描述：[UserLogin]:userLogin == null
+ 
+记录时间：2020-05-16 21:17:46,972  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-16 21:40:54,185  日志级别：ERROR 错误描述：[VisitorLogin]:PassWord is wrong
+ 
