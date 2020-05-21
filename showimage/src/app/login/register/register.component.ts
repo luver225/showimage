@@ -31,6 +31,17 @@ export class RegisterComponent implements OnInit {
 
   register()
   { 
+
+    this.service.SessionValidate().subscribe(
+      data =>{
+        if(!data)
+        {
+          alert("no login success!");
+        }
+        }
+    )
+
+
     if(this.form.controls.password.value != this.form.controls.confirmpassword.value)
     {
       this.needVisibility = true;

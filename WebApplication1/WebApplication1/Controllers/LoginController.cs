@@ -17,10 +17,11 @@ namespace WebApplication1.Controllers
     {
         [HttpPost]
         [Route("api/Login/user")]
-        public string  UserLogin([FromBody]UserLoginDto userLogin)
+        public string UserLogin([FromBody]UserLoginDto userLogin)
         {
             try
             {
+
                 using (var context = new ServiceContext())
                 {
                     if (userLogin == null)
@@ -30,7 +31,7 @@ namespace WebApplication1.Controllers
                     }
 
                     //find user
-                    var user = context.User.Where(u => u.UserName.Equals(userLogin.UserName)).FirstOrDefault() ;
+                    var user = context.User.Where(u => u.UserName.Equals(userLogin.UserName)).FirstOrDefault();
 
                     if (user == null)
                     {
@@ -43,7 +44,9 @@ namespace WebApplication1.Controllers
                         LogHelper.Error("[UserLogin]:PassWord is wrong");
                         return "密码错误";
                     }
-                    
+
+                    HttpContext.Current.Session["userLogin"] = userLogin.UserName;
+
                     return "登录成功";
                 }
             }
@@ -89,7 +92,7 @@ namespace WebApplication1.Controllers
                         return "授权码不正确";
                     }
 
-        
+                    HttpContext.Current.Session["visitorLogin"] = visitorLogin.UserName;
                     return "登录成功";
                 }
             }
@@ -144,5 +147,25 @@ namespace WebApplication1.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("api/Login/session")]
+        public bool SessionValidate()
+        {
+            try
+            {
+                if(HttpContext.Current.Session["userLogin"] == null)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error("[SessionValidate]: " + ex.ToString());
+                return false;
+            }
+        }
     }
 }

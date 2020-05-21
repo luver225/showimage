@@ -1,3 +1,65 @@
 记录时间：2020-05-21 00:01:52,739  日志级别：ERROR 错误描述：[UserLogin]: System.NullReferenceException: 未将对象引用设置到对象的实例。
    在 WebApplication1.Controllers.LoginController.UserLogin(UserLoginDto userLogin) 位置 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\Controllers\LoginController.cs:行号 46
  
+记录时间：2020-05-21 10:36:02,912  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 10:36:59,520  日志级别：ERROR 错误描述：[VisitorLogin]:License == null
+ 
+记录时间：2020-05-21 10:59:35,598  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-21 11:00:01,284  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-21 11:00:52,119  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-21 11:11:14,940  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-21 11:18:52,465  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:19:14,961  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:19:43,071  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:25:53,507  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:31:16,179  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:31:24,660  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:31:34,429  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:38:20,587  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:38:28,643  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:39:30,276  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:42:36,535  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-21 11:42:49,133  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:44:08,957  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:44:17,757  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:45:50,692  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:55:37,327  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:57:32,184  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 11:57:50,504  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 12:04:56,610  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 
+记录时间：2020-05-21 12:17:03,477  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 12:17:19,740  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 12:17:24,822  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 12:18:20,075  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 12:18:30,683  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-21 12:19:40,811  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 

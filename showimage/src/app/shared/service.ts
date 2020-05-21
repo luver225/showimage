@@ -8,6 +8,15 @@ export class Service {
 
   baseUrl:string = "http://localhost:25169/api";
 
+  //携带cookie
+   options = ({ "withCredentials": true });
+ 
+  SessionValidate()
+  {
+    var url = this.baseUrl+ "/Login/session";
+    return this.http.get<boolean>(url,{ "withCredentials": true });
+  }
+
   Register(registerDto:RegisterDto)
   {
     var url = this.baseUrl+ "/Login/register";
