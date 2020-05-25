@@ -1,3 +1,44 @@
-<p>showimage works!</p>
+<nz-layout>
+    <nz-header>
 
-<a routerLink="/management" routerLinkActive="active">去管理</a>
+      <div nz-row>
+        <div nz-col nzSpan="2">
+          主题：
+          <nz-select ngModel="lucy">
+            <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+            <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+            <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+          </nz-select>
+        </div>
+        
+
+
+       <div nz-col nzSpan="3">
+          时间：
+          <nz-month-picker [(ngModel)]="date" (ngModelChange)="onChange($event)" nzPlaceHolder="Select month"></nz-month-picker>
+        </div>
+
+        <div nz-col nzSpan="17"> </div>
+        <div nz-col nzSpan="2"> 
+          系统设置
+        <a routerLink="/management" routerLinkActive="active"> <i nz-icon nzType="setting" nzTheme="outline">
+        
+        </i></a>
+ 
+        </div>
+      
+      </div>
+
+    </nz-header>
+    <nz-content>
+
+      <img [src]="testSrc" >
+      <button  nz-button   (click)="download()">上传</button>
+
+
+    </nz-content>
+  </nz-layout>
+
+
+ 
+

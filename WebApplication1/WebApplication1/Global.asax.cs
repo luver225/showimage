@@ -13,24 +13,27 @@ namespace WebApplication1
     {
         protected void Application_Start()
         {
-            var allowOrigins = ConfigurationManager.AppSettings["cors_allowOrigins"];
-            GlobalConfiguration.Configuration.EnableCors(new EnableCorsAttribute(allowOrigins, "*", "*") { SupportsCredentials = true }); ;
+            //session一直不成功,改Token方案
+            //var allowOrigins = ConfigurationManager.AppSettings["Access-Control-Allow-Origin"];
+
+            //GlobalConfiguration.Configuration.EnableCors(new EnableCorsAttribute(allowOrigins, "*", "*") { SupportsCredentials = true }); 
+            GlobalConfiguration.Configuration.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
-        public override void Init()
-        {
-            //注册事件
-            this.AuthenticateRequest += WebApiApplication_AuthenticateRequest;
-            base.Init();
-        }
-        void WebApiApplication_AuthenticateRequest(object sender, EventArgs e)
-        {
-            //启用 webapi 支持session 会话
-            HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
-        }
+        //public override void Init()
+        //{
+        //    //注册事件
+        //    this.AuthenticateRequest += WebApiApplication_AuthenticateRequest;
+        //    base.Init();
+        //}
+        //void WebApiApplication_AuthenticateRequest(object sender, EventArgs e)
+        //{
+        //    //启用 webapi 支持session 会话
+        //    HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
+        //}
  
     }
 }

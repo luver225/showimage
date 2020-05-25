@@ -1,0 +1,37 @@
+.login-form {
+    max-width: 300px;
+  }
+
+  .login-form-margin {
+    margin-bottom: 16px;
+  }
+
+  .login-form-forgot {
+    float: right;
+  }
+
+  .login-form-button {
+    width: 100%;
+  }
+
+  ._login
+  {
+    margin-top: 300px;
+  }
+
+  .failed
+  {
+    color: brown;
+  }
+
+
+  :host ::ng-deep .avatar-uploader > .ant-upload {
+    width: 128px;
+    height: 128px;
+  }
+
+  .img{
+    width: 200px;
+    height: 200px;
+  }
+  

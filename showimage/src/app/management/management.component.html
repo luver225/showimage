@@ -1,2 +1,19 @@
-<p>management works!</p>
-<a routerLink="/showimage" routerLinkActive="active">去看图</a>
+
+
+
+<div class = "home_left" nz-col nzSpan="1">
+    <ul nz-menu nzTheme = "dark" >
+      <li nz-menu-item *ngFor="let item of items" >
+        <a [routerLink]="item.path">{{item.name}}</a>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- right -->
+  <div class = "home_right" nz-col nzSpan="23">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- <p>management works!</p>
+
+<a routerLink="/showimage" routerLinkActive="active">去看图</a> -->

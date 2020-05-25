@@ -1,0 +1,42 @@
+记录时间：2020-05-24 11:58:12,343  日志级别：ERROR 错误描述：[UserLogin]: System.ArgumentNullException: String 引用没有设置为 String 的实例。
+参数名: s
+   在 System.Text.Encoding.GetBytes(String s)
+   在 WebApplication1.Utility.MD5Password.Encryption(String password) 位置 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\Utility\MD5Password.cs:行号 13
+   在 WebApplication1.Controllers.LoginController.UserLogin(UserLoginDto userLogin) 位置 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\Controllers\LoginController.cs:行号 41
+ 
+记录时间：2020-05-24 12:18:48,510  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-24 12:24:12,695  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 12:24:13,916  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 12:24:17,196  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 12:24:18,794  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 12:24:29,003  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 12:24:31,354  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 13:07:24,563  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 13:07:26,091  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 13:13:43,673  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 13:17:25,614  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-24 13:20:38,392  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-24 13:22:04,905  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-24 13:54:50,158  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-24 17:18:39,511  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 
+记录时间：2020-05-24 21:57:48,013  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 21:57:52,044  日志级别：ERROR 错误描述：[UserLogin]:PassWord is wrong
+ 
+记录时间：2020-05-24 22:06:50,950  日志级别：ERROR 错误描述：[Register]:IsNullOrEmpty
+ 

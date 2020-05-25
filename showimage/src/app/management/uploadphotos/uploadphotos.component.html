@@ -1,0 +1,54 @@
+<div nz-row class="_login">
+    <div nz-col nzSpan="8"></div>
+    <div nz-col nzSpan="8" nzJustify="space-around" nzAlign="middle">
+      <form nz-form>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">上传</nz-form-label>
+          <nz-form-control  [nzSpan]="12" >
+            <input type="file" class = "file" (change) = "FileSelected($event)" accept="image/*"/>
+            <br>
+            <img [src] = "src" class = "img" *ngIf="needimgVisibility">
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">时间</nz-form-label>
+          <nz-form-control  [nzSpan]="12" >
+            <nz-month-picker [(ngModel)]="ImageTime"  name= "ImageTime"></nz-month-picker>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">标题</nz-form-label>
+          <nz-form-control  [nzSpan]="12" >
+            <input nz-input [(ngModel)]="ImageOverview" name="ImageOverview"/>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">主题</nz-form-label>
+          <nz-form-control  [nzSpan]="12" >
+            <nz-select ngModel="lucy" name = "theme">
+              <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+              <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+              <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">描述</nz-form-label>
+          <nz-form-control  [nzSpan]="12" >
+            <textarea nz-input nzAutosize [(ngModel)]="ImageDescription" name="ImageDescription"></textarea>
+          </nz-form-control>
+        </nz-form-item>
+    
+        <button  nz-button  class="login-form-button login-form-margin" 
+     [nzType]="'primary'"   (click)="upload()">上传</button>
+          
+
+      </form>
+    </div>
+    <div nz-col nzSpan="8"></div>
+  </div>

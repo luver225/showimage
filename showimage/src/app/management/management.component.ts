@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Service } from '../shared/service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-management',
@@ -7,7 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service:Service,
+    public route:Router) { 
+
+    // if(!service.isLoginSuccess)
+    // {
+    //   this.route.navigate(['/loginfail']);
+    // }
+  }
+
+  items =[
+    {name:"回到首页",path:"/showimage"},
+    {name:"上传照片",path:"/management/uploadphotos"},
+    {name:"主题管理",path:"/management/thememanager"},
+    {name:"相册管理",path:"/management/photomanagement"},
+    {name:"修改密码",path:"/management/changepassword"},
+    {name:"授权许可",path:"/management/licensing"},
+  ]
 
   ngOnInit() {
   }

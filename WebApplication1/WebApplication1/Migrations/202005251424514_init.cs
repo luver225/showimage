@@ -10,31 +10,31 @@ namespace WebApplication1.Migrations
             CreateTable(
                 "dbo.Images",
                 c => new
-                {
-                    ImageID = c.Int(nullable: false, identity: true),
-                    ImagePath = c.String(maxLength: 1024, unicode: false, storeType: "nvarchar"),
-                    ImageOverview = c.String(maxLength: 64, unicode: false, storeType: "nvarchar"),
-                    ImageDescription = c.String(maxLength: 1024, unicode: false, storeType: "nvarchar"),
-                    Year = c.Int(nullable: false),
-                    Month = c.Int(nullable: false),
-                    UserID = c.Int(nullable: false),
-                    ThemeID = c.Int(nullable: false),
-                    Updatetime = c.DateTime(nullable: false, precision: 0),
-                })
+                    {
+                        ImageID = c.Int(nullable: false, identity: true),
+                        ImageSimplePath = c.String(maxLength: 1024, unicode: false, storeType: "nvarchar"),
+                        ImageOriginalPath = c.String(maxLength: 1024, unicode: false, storeType: "nvarchar"),
+                        ImageOverview = c.String(maxLength: 64, unicode: false, storeType: "nvarchar"),
+                        ImageDescription = c.String(maxLength: 1024, unicode: false, storeType: "nvarchar"),
+                        Year = c.Int(nullable: false),
+                        Month = c.Int(nullable: false),
+                        UserID = c.Int(nullable: false),
+                        ThemeID = c.Int(nullable: false),
+                        Updatetime = c.DateTime(nullable: false, precision: 0),
+                    })
                 .PrimaryKey(t => t.ImageID)
                 .ForeignKey("dbo.Themes", t => t.ThemeID, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true);
-
-
+            
             CreateTable(
                 "dbo.Themes",
                 c => new
-                {
-                    ThemeID = c.Int(nullable: false, identity: true),
-                    ThemeName = c.String(maxLength: 20, unicode: false, storeType: "nvarchar"),
-                    UserID = c.Int(nullable: false),
-                    Updatetime = c.DateTime(nullable: false, precision: 0),
-                })
+                    {
+                        ThemeID = c.Int(nullable: false, identity: true),
+                        ThemeName = c.String(maxLength: 20, unicode: false, storeType: "nvarchar"),
+                        UserID = c.Int(nullable: false),
+                        Updatetime = c.DateTime(nullable: false, precision: 0),
+                    })
                 .PrimaryKey(t => t.ThemeID)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true);
             

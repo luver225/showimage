@@ -32,6 +32,9 @@ export class VistorComponent implements OnInit {
   vistor()
   { 
 
+    this.needVisibility = true;
+    this.loginResult = "登录中...";
+
       let visitorLoginDto = new VisitorLoginDto();
       visitorLoginDto.UserName = this.form.controls.userName.value;
       visitorLoginDto.License = this.form.controls.password.value;

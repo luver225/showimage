@@ -17,6 +17,12 @@ import { RegisterComponent } from './login/register/register.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { VistorComponent } from './login/vistor/vistor.component';
 import { Service } from './shared/service';
+import { LoginfailComponent } from './loginfail/loginfail.component';
+import { UploadphotosComponent } from './management/uploadphotos/uploadphotos.component';
+import { ThememanagerComponent } from './management/thememanager/thememanager.component';
+import { PhotomanagementComponent } from './management/photomanagement/photomanagement.component';
+import { ChangepasswordComponent } from './management/changepassword/changepassword.component';
+import { LicensingComponent } from './management/licensing/licensing.component';
 ;
 
 registerLocaleData(en);
@@ -30,7 +36,13 @@ registerLocaleData(en);
     LogincheckComponent,
     RegisterComponent,
     ErrorpageComponent,
-    VistorComponent
+    VistorComponent,
+    LoginfailComponent,
+    UploadphotosComponent,
+    ThememanagerComponent,
+    PhotomanagementComponent,
+    ChangepasswordComponent,
+    LicensingComponent
   ],
   imports: [
     BrowserModule,

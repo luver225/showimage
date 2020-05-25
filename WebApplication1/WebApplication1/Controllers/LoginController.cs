@@ -21,7 +21,6 @@ namespace WebApplication1.Controllers
         {
             try
             {
-
                 using (var context = new ServiceContext())
                 {
                     if (userLogin == null)
@@ -44,10 +43,8 @@ namespace WebApplication1.Controllers
                         LogHelper.Error("[UserLogin]:PassWord is wrong");
                         return "密码错误";
                     }
-
-                    HttpContext.Current.Session["userLogin"] = userLogin.UserName;
-
-                    return "登录成功";
+                    var result = "登录成功" + JustToken.token;
+                    return result;
                 }
             }
             catch (Exception ex)
@@ -56,7 +53,6 @@ namespace WebApplication1.Controllers
                 return "登录失败";
             }
         }
-
         [HttpPost]
         [Route("api/Login/visitor")]
         public string VisitorLogin([FromBody]VisitorLoginDto visitorLogin)
@@ -144,27 +140,6 @@ namespace WebApplication1.Controllers
             {
                 LogHelper.Error("[Register]: " + ex.ToString());
                 return "注册失败";
-            }
-        }
-
-
-        [HttpGet]
-        [Route("api/Login/session")]
-        public bool SessionValidate()
-        {
-            try
-            {
-                if(HttpContext.Current.Session["userLogin"] == null)
-                {
-                    return false;
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error("[SessionValidate]: " + ex.ToString());
-                return false;
             }
         }
     }

@@ -38,7 +38,6 @@ namespace WebApplication1.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("api/ShowImage/{themeID}/{year}/{month}/{userID}")]
         public List<ShowImageDto> GetImages([FromUri] int themeID, [FromUri] int year, [FromUri] int month, [FromUri] int userID)

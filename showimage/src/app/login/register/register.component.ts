@@ -32,22 +32,15 @@ export class RegisterComponent implements OnInit {
   register()
   { 
 
-    this.service.SessionValidate().subscribe(
-      data =>{
-        if(!data)
-        {
-          alert("no login success!");
-        }
-        }
-    )
-
-
     if(this.form.controls.password.value != this.form.controls.confirmpassword.value)
     {
       this.needVisibility = true;
       this.registerResult = "两次密码不相同,请重新输入";
       return;
     }
+
+    this.needVisibility = true;
+    this.registerResult = "注册中...";
 
     let register = new RegisterDto();
     register.UserName = this.form.controls.userName.value;
@@ -60,6 +53,4 @@ export class RegisterComponent implements OnInit {
       },
     )
   }
-
-  
 }

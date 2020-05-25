@@ -297,11 +297,11 @@ C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\b
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\bin\zh-Hans\System.Web.Http.resources.dll
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csprojAssemblyReference.cache
-C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\obj\Debug\WebApplication1.Migrations.init.resources
-C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.cache
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\bin\System.Web.Cors.dll
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\bin\System.Web.Http.Cors.dll
 C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\bin\System.Web.Http.Cors.xml
+C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\obj\Debug\WebApplication1.Migrations.init.resources
+C:\Users\rongkun.lu\Desktop\git_show\showimage\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.cache

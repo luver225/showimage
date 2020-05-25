@@ -77,7 +77,10 @@ namespace WebApplication1.Models
         public int ImageID { get; set; }
 
         [MaxLength(1024)]
-        public string ImagePath { get; set; }
+        public string ImageSimplePath { get; set; }
+
+        [MaxLength(1024)]
+        public string ImageOriginalPath { get; set; }
 
         [MaxLength(64)]
         public string ImageOverview { get; set; }

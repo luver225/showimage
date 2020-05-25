@@ -7,6 +7,12 @@ import { ShowimageComponent } from './showimage/showimage.component';
 import { ManagementComponent } from './management/management.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { VistorComponent } from './login/vistor/vistor.component';
+import { LoginfailComponent } from './loginfail/loginfail.component';
+import { UploadphotosComponent } from './management/uploadphotos/uploadphotos.component';
+import { ThememanagerComponent } from './management/thememanager/thememanager.component';
+import { PhotomanagementComponent } from './management/photomanagement/photomanagement.component';
+import { ChangepasswordComponent } from './management/changepassword/changepassword.component';
+import { LicensingComponent } from './management/licensing/licensing.component';
 
 
 const routes: Routes = [
@@ -21,7 +27,23 @@ const routes: Routes = [
     ]
   },
   { path: 'showimage', component: ShowimageComponent },
-  { path: 'management', component: ManagementComponent },
+
+  {
+    path: 'management',
+    component: ManagementComponent,
+    children: [
+      { path: '', component: UploadphotosComponent },
+      { path: 'uploadphotos', component: UploadphotosComponent },
+      { path: 'thememanager', component: ThememanagerComponent },
+      { path: 'photomanagement', component: PhotomanagementComponent },
+      { path: 'changepassword', component: ChangepasswordComponent },
+      { path: 'licensing', component: LicensingComponent },
+    ]
+  },
+
+
+
+  { path: 'loginfail', component: LoginfailComponent },
   
   { path: '**', component: ErrorpageComponent },
 ];

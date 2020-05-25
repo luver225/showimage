@@ -29,13 +29,25 @@ export class LogincheckComponent implements OnInit {
   }
 
   login() {
+
+    this.needVisibility = true;
+    this.loginResult = "登陆中...";
+
+
     let userLoginDto = new UserLoginDto();
     userLoginDto.UserName = this.form.controls.userName.value;
     userLoginDto.PassWord = this.form.controls.password.value;
 
     this.service.UserLogin(userLoginDto).subscribe(
       (data: string) => {
-        if (data == "登录成功") {
+        if (data.slice(0,4) == "登录成功") {
+          
+          //set token
+          this.service.token = data.slice(4);;
+          this.service.httpOptions.headers = this.service.httpOptions.headers.set('Authorization',"Bearer "+this.service.token);
+          this.service.isLoginSuccess = true;
+
+
           this.needVisibility = false;
           this.route.navigate(['/showimage']);
         }

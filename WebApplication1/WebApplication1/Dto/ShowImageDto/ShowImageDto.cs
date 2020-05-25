@@ -32,7 +32,7 @@ namespace WebApplication1.Dto.ShowImageDto
             var showImageDto = new ShowImageDto
             {
                 ImageID = image.ImageID,
-                ImagePath = image.ImagePath,
+                ImagePath = image.ImageSimplePath,
                 ImageOverview = image.ImageOverview,
                 ImageDescription = image.ImageDescription,
                 Year = image.Year,
