@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -35,20 +38,12 @@ namespace ImageLine.Utility
                 fileStream.Read(bytes, 0, (int)fileStream.Length);
                 fs.Write(bytes, 0, bytes.Count());
             }
-
-            //2.
-            //var uploadFile = HttpContext.Current.Request.Files["file"];
-            
-            //uploadFile.SaveAs(Getpath());
         }
 
         public static FileStream LoadFile(string filePath)
         {
             return new FileStream(filePath, FileMode.Open, FileAccess.Read);
         }
-
-
-
 
         public enum ImageType
         {

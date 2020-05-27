@@ -236,3 +236,6 @@ C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\bin\zh-Han
 C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
 C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\obj\Debug\ImageLine.Migrations.init.resources
 C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\obj\Debug\ImageLine.csproj.CopyComplete
+C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\bin\Swashbuckle.Core.dll
+C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\bin\WebActivatorEx.dll

@@ -2,6 +2,7 @@
 using ImageLine.Models;
 using ImageLine.Utility;
 using System;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -11,6 +12,8 @@ namespace ImageLine.Controllers
 {
     public class SystemManagementController : ApiController
     {
+
+        //image crud
         [HttpPost]
         [Route("api/SystemManagement/image")]
         public bool Upload()
@@ -19,25 +22,25 @@ namespace ImageLine.Controllers
             {
                 using (var context = new ServiceContext())
                 {
-                    var user = new Image();
+                    var image = new Image();
 
                     var theme = HttpContext.Current.Request["themeName"];
                     var imageOriginalPath = CreatefilePath(theme, ImageType.OriginalImage);
                     var imageInputStream = HttpContext.Current.Request.Files["file"].InputStream;
                     SaveFile(imageInputStream, imageOriginalPath);
-                    user.ImageOriginalPath = imageOriginalPath;
-                    user.ImageDescription = HttpContext.Current.Request["imageDescription"];
-                    user.ImageOverview = HttpContext.Current.Request["imageOverview"];
-                    user.Month = int.Parse(HttpContext.Current.Request["imageMonth"]);
-                    user.Year = int.Parse(HttpContext.Current.Request["imageyear"]);
+                    image.ImageOriginalPath = imageOriginalPath;
+                    image.ImageDescription = HttpContext.Current.Request["imageDescription"];
+                    image.ImageOverview = HttpContext.Current.Request["imageOverview"];
+                    image.Month = int.Parse(HttpContext.Current.Request["imageMonth"]);
+                    image.Year = int.Parse(HttpContext.Current.Request["imageyear"]);
 
                     //前端Todo...
-                    user.ThemeID = int.Parse(HttpContext.Current.Request["themeID"]);
-                    user.UserID = int.Parse(HttpContext.Current.Request["userID"]);
+                    image.ThemeID = int.Parse(HttpContext.Current.Request["themeID"]);
+                    image.UserID = int.Parse(HttpContext.Current.Request["userID"]);
 
-                    user.Updatetime = DateTime.Now;
+                    image.Updatetime = DateTime.Now;
 
-                    context.Image.Add(user);
+                    context.Image.Add(image);
                     context.SaveChanges();
                     return true;
                 }
@@ -48,6 +51,34 @@ namespace ImageLine.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/SystemManagement/image/{id}")]
+        public bool DeleteImage([FromUri]int id)
+        {
+            try
+            {
+                using (var context = new ServiceContext())
+                {
+                    var imageEntity = context.Image.Find(id);
+                    var filePath = imageEntity.ImageOriginalPath;
+                    context.Image.Remove(imageEntity);
+                    context.SaveChanges();
+
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        //user crud
         [HttpPut]
         [Route("api/SystemManagement/User")]
         public bool UserChange([FromBody]UserChangeDto userDto)
@@ -78,7 +109,7 @@ namespace ImageLine.Controllers
                 using (var context = new ServiceContext())
                 {
                     var userEntity = context.User.Find(licenseChange.UserID);
-                    licenseChange.License = MD5Password.Encryption(licenseChange.License);
+                    userEntity.License = MD5Password.Encryption(licenseChange.License);
                     userEntity.Updatetime = DateTime.Now;
                     context.SaveChanges();
                     return true;
@@ -90,7 +121,7 @@ namespace ImageLine.Controllers
             }
         }
 
-
+        //user crud
         [HttpPost]
         [Route("api/SystemManagement/theme")]
         public bool AddTheme([FromBody]ThemeDto theme)
@@ -121,8 +152,22 @@ namespace ImageLine.Controllers
             {
                 using (var context = new ServiceContext())
                 {
+                    var themeEntity = context.Theme.Find(id);
 
+                    var name = themeEntity.ThemeName;
+                    var directoryPath_Simple = "E:\\轨迹相册\\缩略图\\" + name;
+                    var directoryPath_Original = "E:\\轨迹相册\\缩略图\\" + name;
 
+                    if (Directory.Exists(directoryPath_Simple) && File.GetAttributes(directoryPath_Simple) == FileAttributes.Directory)
+                    {
+                        Directory.Delete(directoryPath_Simple, true);
+                    }
+
+                    if (Directory.Exists(directoryPath_Original) && File.GetAttributes(directoryPath_Original) == FileAttributes.Directory)
+                    {
+                        Directory.Delete(directoryPath_Simple, true);
+                    }
+                    context.Theme.Remove(themeEntity);
                     context.SaveChanges();
                     return true;
                 }
@@ -132,7 +177,6 @@ namespace ImageLine.Controllers
                 return false;
             }
         }
-
 
 
     }

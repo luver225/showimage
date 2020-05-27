@@ -1,7 +1,4 @@
-﻿
-
-
-using ImageLine.Dto;
+﻿using ImageLine.Dto;
 using ImageLine.Models;
 using ImageLine.Utility;
 using System;
@@ -17,10 +14,9 @@ namespace ImageLine.Controllers
     public class ShowImageController : ApiController
     {
         [HttpGet]
-        [Route("api/SystemManagement/image/{id}")]
+        [Route("api/ShowImage/image/{id}")]
         public HttpResponseMessage Download([FromUri] int id)
         {
-
             try
             {
                 using (var context = new ServiceContext())
@@ -41,7 +37,7 @@ namespace ImageLine.Controllers
         }
 
         [HttpGet]
-        [Route("api/ShowImage/{userID}")]
+        [Route("api/ShowImage/theme/{userID}")]
         public List<ThemeDto> GetThemes([FromUri] int userID)
         {
             try
@@ -66,8 +62,8 @@ namespace ImageLine.Controllers
         }
 
         [HttpGet]
-        [Route("api/ShowImage/{themeID}/{year}/{month}/{userID}")]
-        public List<ShowImageDto> GetImages([FromUri] int themeID, [FromUri] int year, [FromUri] int month, [FromUri] int userID)
+        [Route("api/ShowImage/images/{themeID}/{year}/{month}/{userID}")]
+        public List<ShowImageDto> GetImageInfos([FromUri] int themeID, [FromUri] int year, [FromUri] int month, [FromUri] int userID)
         {
             try
             {
@@ -79,27 +75,104 @@ namespace ImageLine.Controllers
                 {
                     var imageList = new List<Image>();
 
+                    //1
                     if (!hasTheme && !hasYear && !hasMonth)
                     {
                         LogHelper.Error("[ShowImage]:!hasTheme && !hasYear && !hasMonth");
                         imageList = null;
                     }
+
+                    //2
                     if (hasTheme && hasYear && hasMonth)
                     {
 
-                        var imageListEntity = context.Image.Where(t =>
-                            t.UserID == userID
-                        && t.ThemeID == themeID
-                        && t.Year == year
-                        && t.Month == month).ToList();
+                        var imageListEntity = context.Image.Where(t => t.ThemeID == themeID && t.Year == year && t.Month == month).ToList();
 
                         if (imageListEntity == null)
                         {
-                            LogHelper.Error("[ShowImage]:imageListEntity == null");
                             return null;
                         }
 
                         imageList = imageListEntity.OrderBy(i => i.Updatetime).ToList();
+                    }
+
+                    //3
+                    if (hasTheme && !hasYear && !hasMonth)
+                    {
+
+                        var imageListEntity = context.Image.Where(t => t.ThemeID == themeID).ToList();
+
+                        if (imageListEntity == null)
+                        {
+                            return null;
+                        }
+
+                        imageList = imageListEntity.OrderBy(i => i.Year).ThenBy(i => i.Month).ThenBy(i => i.Updatetime).ToList();
+                    }
+
+                    //4
+                    if (hasTheme && !hasYear && hasMonth)
+                    {
+
+                        var imageListEntity = context.Image.Where(t => t.ThemeID == themeID && t.Month == month).ToList();
+
+                        if (imageListEntity == null)
+                        {
+                            return null;
+                        }
+                        imageList = imageListEntity.OrderBy(i => i.Year).ThenBy(i => i.Updatetime).ToList();
+                    }
+
+                    //5
+                    if (hasTheme && hasYear && !hasMonth)
+                    {
+
+                        var imageListEntity = context.Image.Where(t => t.ThemeID == themeID && t.Year == year).ToList();
+
+                        if (imageListEntity == null)
+                        {
+                            return null;
+                        }
+                        imageList = imageListEntity.OrderBy(i => i.Month).ThenBy(i => i.Updatetime).ToList();
+                    }
+
+                    //6
+                    if (!hasTheme && hasYear && hasMonth)
+                    {
+
+                        var imageListEntity = context.Image.Where(t => t.UserID == userID && t.Year == year && t.Month == month).ToList();
+
+                        if (imageListEntity == null)
+                        {
+                            return null;
+                        }
+                        imageList = imageListEntity.OrderBy(i => i.Updatetime).ToList();
+                    }
+
+                    //7
+                    if (!hasTheme && hasYear && !hasMonth)
+                    {
+
+                        var imageListEntity = context.Image.Where(t => t.UserID == userID && t.Year == year).ToList();
+
+                        if (imageListEntity == null)
+                        {
+                            return null;
+                        }
+                        imageList = imageListEntity.OrderBy(i => i.Month).ThenBy(i => i.Updatetime).ToList();
+                    }
+
+                    //8
+                    if (!hasTheme && !hasYear && hasMonth)
+                    {
+
+                        var imageListEntity = context.Image.Where(t => t.UserID == userID && t.Month == month).ToList();
+
+                        if (imageListEntity == null)
+                        {
+                            return null;
+                        }
+                        imageList = imageListEntity.OrderBy(i => i.Year).ThenBy(i => i.Updatetime).ToList();
                     }
 
                     var showImageDtoList = new List<ShowImageDto>();
@@ -107,7 +180,6 @@ namespace ImageLine.Controllers
                     {
                         showImageDtoList.Add(ShowImageDto.Map(image));
                     }
-
                     return showImageDtoList;
                 }
             }
@@ -117,5 +189,6 @@ namespace ImageLine.Controllers
                 return null;
             }
         }
+
     }
 }
