@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Routes, Router } from '@angular/router';
 import { Service } from 'src/app/shared/service';
-import { UserLoginDto } from 'src/app/shared/dto';
+import { UserChangeDto, UserDto, LoginResultDto } from 'src/app/shared/dto';
 
 @Component({
   selector: 'app-logincheck',
@@ -34,26 +34,24 @@ export class LogincheckComponent implements OnInit {
     this.loginResult = "登陆中...";
 
 
-    let userLoginDto = new UserLoginDto();
+    let userLoginDto = new UserDto();
     userLoginDto.UserName = this.form.controls.userName.value;
     userLoginDto.PassWord = this.form.controls.password.value;
 
     this.service.UserLogin(userLoginDto).subscribe(
-      (data: string) => {
-        if (data.slice(0,4) == "登录成功") {
-          
+      (data: LoginResultDto) => {
+        if (data.IsSuccess) {
           //set token
-          this.service.token = data.slice(4);;
-          this.service.httpOptions.headers = this.service.httpOptions.headers.set('Authorization',"Bearer "+this.service.token);
+          this.service.token = data.Token;;
+          this.service.httpOptions.headers = this.service.httpOptions.headers.set('Authorization',"Bearer "+data.Token);
           this.service.isLoginSuccess = true;
-
-
+          this.service.UserId = data.UserID;
           this.needVisibility = false;
           this.route.navigate(['/showimage']);
         }
         else {
           this.needVisibility = true;
-          this.loginResult = data;
+          this.loginResult = data.Reason;
         }
       }
     )

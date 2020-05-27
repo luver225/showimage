@@ -7,17 +7,46 @@ export class ConfigService {
   constructor(private http: HttpClient) { }
 }
 
-export class RegisterDto {
-  public UserName: String;
-  public PassWord: String;
+export class ShowImageDto {
+  ImageID:number;
+  ImageOverview:string;
+  ImageDescription:string;
+  Year:number;
+  Month:number;
 }
 
-export class UserLoginDto {
-  public UserName: String;
-  public PassWord: String;
+export class UserDto {
+   UserName: string;
+   PassWord: string;
 }
 
-export class VisitorLoginDto {
-  public UserName: String;
-  public License: String;
+export class LienceDto {
+   UserName: string;
+   License: string;
+}
+
+export class LoginResultDto {
+  UserID:number;
+  IsSuccess:boolean;
+  Reason:string;
+  Token:string;
+}
+
+
+export class ThemeDto {
+  ThemeID:number;
+  UserID:number;
+  ThemeName:string;
+}
+    
+
+export class UserChangeDto {
+  UserID:number;
+  UserName:string;
+  PassWord:string;
+}
+
+export class LicenseChangeDto {
+  UserID:number;
+  License:string;
 }

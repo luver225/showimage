@@ -239,3 +239,4 @@ C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\obj\Debug\
 C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\bin\Swashbuckle.Core.dll
 C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\bin\WebActivatorEx.dll
+C:\Users\rongkun.lu\Desktop\git\showimage\ImageLine_WebApi2\ImageLine\obj\Debug\ImageLine.csprojAssemblyReference.cache

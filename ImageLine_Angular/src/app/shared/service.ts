@@ -1,58 +1,100 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RegisterDto, UserLoginDto, VisitorLoginDto } from './dto';
+import { ThemeDto, UserDto, LienceDto, UserChangeDto, LicenseChangeDto,  } from './dto';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable()
 export class Service {
   constructor(private http: HttpClient) { 
   }
+  
+  UserId:number;
 
-  //angular  验证
-  public isLoginSuccess:boolean = false; 
+  //angular 验证
+  isLoginSuccess:boolean = false; 
 
-  //远程  验证
-  public token:string = ""; 
+  //webapi2  验证
+  token:string = ""; 
 
-  public httpOptions= {headers: new HttpHeaders({})};
+
+  httpOptions= {headers: new HttpHeaders({})};
 
   baseUrl:string = "http://localhost:25169/api";
 
 
-  //login
-  Register(registerDto:RegisterDto)
-  {
-    var url = this.baseUrl+ "/Login/register";
-    return this.http.post<string>(url,registerDto,this.httpOptions);
-  }
-
-  UserLogin(userLoginDto:UserLoginDto)
+  //Login
+  UserLogin(userDto:UserDto)
   {
     var url = this.baseUrl+ "/Login/user";
-    return this.http.post<string>(url,userLoginDto);
+    return this.http.post(url,userDto);
   }
 
-  VisitorLogin(visitorLoginDto:VisitorLoginDto)
+  VisitorLogin(lienceDto:LienceDto)
   {
     var url = this.baseUrl+ "/Login/visitor";
-    return this.http.post<string>(url,visitorLoginDto);
+    return this.http.post(url,lienceDto);
   }
 
-
-
-  //Manager
-  UploadImage(formData:FormData)
+  Register(userDto:UserDto)
   {
-    var url = this.baseUrl+ "/ImageManagement/image";
-    return this.http.post<boolean>(url,formData);
+    var url = this.baseUrl+ "/Login/register";
+    return this.http.post(url,userDto);
   }
 
-
-  //showimage
-  DownloadImage(id:number)
+  //ShowImage
+  Download(id:number)
   {
-    var url = this.baseUrl+ "/ImageManagement/image/" + id;
+    var url = this.baseUrl+ "/ShowImage/image/" + id;
     return this.http.get(url,{responseType: 'blob'});
+  }
+
+  GetThemes(id:number)
+  {
+    var url = this.baseUrl+ "/ShowImage/theme/" + id;
+    return this.http.get(url);
+  }
+
+  GetImageInfos(themeID:number,year:number,month:number,userID:number)
+  {
+    var url = this.baseUrl+ "/ShowImage/images/" + themeID + year + month + userID;
+    return this.http.get(url);
+  }
+
+  //SystemManagement
+  Upload(fromData:FormData)
+  {
+    var url = this.baseUrl+ "/SystemManagement/image/";
+    return this.http.post(url,fromData);
+  }
+
+  DeleteImage(id:number)
+  {
+    var url = this.baseUrl+ "/SystemManagement/image/id";
+    return this.http.delete(url);
+  }
+
+  UserChange(userChangeDto:UserChangeDto)
+  {
+    var url = this.baseUrl+ "/SystemManagement/User";
+    return this.http.put(url,userChangeDto);
+  }
+
+  LicenseChange(licenseChangeDto:LicenseChangeDto)
+  {
+    var url = this.baseUrl+ "/SystemManagement/license";
+    return this.http.put(url,licenseChangeDto);
+  }
+
+  AddTheme(themeDto:ThemeDto)
+  {
+    var url = this.baseUrl+ "/SystemManagement/theme";
+    return this.http.post(url,themeDto);
+  }
+
+  DeleteTheme(id:number)
+  {
+    var url = this.baseUrl+ "/SystemManagement/theme/" + id;
+    return this.http.delete(url);
   }
 
 }

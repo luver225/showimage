@@ -4,10 +4,6 @@ using ImageLine.Models;
 
 namespace ImageLine.Dto
 {
-
-
-
-
     public class ShowImageDto
     {
         public int ImageID { get; set; }
@@ -41,8 +37,6 @@ namespace ImageLine.Dto
         }
     }
 
-
-
     //login
     public class UserDto
     {
@@ -53,9 +47,22 @@ namespace ImageLine.Dto
 
     public class LienceDto
     {
+
         public string UserName { get; set; }
 
         public string License { get; set; }
+    }
+
+    public class LoginResultDto
+    {
+        public int UserID { get; set; }
+
+        public bool IsSuccess { get; set; }
+
+        public string Reason { get; set; }
+
+        public string Token { get; set; }
+
     }
 
     //showimage
@@ -95,7 +102,6 @@ namespace ImageLine.Dto
 
         public string PassWord { get; set; }
     }
-
 
     public class LicenseChangeDto
     {

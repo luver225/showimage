@@ -135,6 +135,7 @@
     <Compile Include="Utility\ImageManager.cs" />
     <Compile Include="Utility\JustToken.cs" />
     <Compile Include="Utility\LogHelper.cs" />
+    <Compile Include="Utility\LoginResult.cs" />
     <Compile Include="Utility\MD5Password.cs" />
   </ItemGroup>
   <ItemGroup>

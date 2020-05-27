@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-
+using static ImageLine.Utility.LoginResult;
 
 namespace ImageLine.Controllers
 {
@@ -13,46 +13,46 @@ namespace ImageLine.Controllers
     {
         [HttpPost]
         [Route("api/Login/user")]
-        public string UserLogin([FromBody]UserDto userLogin)
+        public LoginResultDto UserLogin([FromBody]UserDto userLogin)
         {
-            try
+            try  
             {
                 using (var context = new ServiceContext())
                 {
                     if (userLogin == null)
                     {
                         LogHelper.Error("[UserLogin]:userLogin == null");
-                        return "登录失败";
+                        return LoginResultInfo(false, "登陆失败");
                     }
 
-                    //find user
                     var user = context.User.Where(u => u.UserName.Equals(userLogin.UserName)).FirstOrDefault();
 
                     if (user == null)
                     {
                         LogHelper.Error("[UserLogin]:user == null");
-                        return "找不到用户名";
+                        return LoginResultInfo(false, "找不到用户名");
                     }
 
                     if (!user.PassWord.Equals(MD5Password.Encryption(userLogin.PassWord)))
                     {
                         LogHelper.Error("[UserLogin]:PassWord is wrong");
-                        return "密码错误";
+                        return LoginResultInfo(false, "密码错误");
                     }
-                    var result = "登录成功" + JustToken.token;
-                    return result;
+
+                    return LoginResultInfo(true, "登陆成功", JustToken.token, user.UserID);
                 }
+
             }
             catch (Exception ex)
             {
                 LogHelper.Error("[UserLogin]: " + ex.ToString());
-                return "登录失败";
+                return LoginResultInfo(false, "登陆失败");
             }
         }
 
         [HttpPost]
         [Route("api/Login/visitor")]
-        public string VisitorLogin([FromBody]LienceDto visitorLogin)
+        public LoginResultDto VisitorLogin([FromBody]LienceDto visitorLogin)
         {
             try
             {
@@ -61,38 +61,36 @@ namespace ImageLine.Controllers
                     if (visitorLogin == null)
                     {
                         LogHelper.Error("[VisitorLogin]:userLogin == null");
-                        return "登录失败";
+                        return LoginResultInfo(false, "登陆失败");
                     }
 
-                    //find user
                     var user = context.User.Where(u => u.UserName.Equals(visitorLogin.UserName)).FirstOrDefault();
 
                     if (user == null)
                     {
                         LogHelper.Error("[VisitorLogin]:userLogin == null");
-                        return "找不到该用户";
+                        return LoginResultInfo(false, "找不到用户名");
                     }
 
                     if (user.License == null)
                     {
                         LogHelper.Error("[VisitorLogin]:License == null");
-                        return "该用户未授权";
+                        return LoginResultInfo(false, "该用户未授权");
                     }
 
                     if (user.License.Equals(MD5Password.Encryption(visitorLogin.License)) == false)
                     {
                         LogHelper.Error("[VisitorLogin]：License is wrong");
-                        return "授权码不正确";
+                        return LoginResultInfo(false, "授权码不正确");
                     }
 
-                    HttpContext.Current.Session["visitorLogin"] = visitorLogin.UserName;
-                    return "登录成功";
+                    return LoginResultInfo(true, "登陆成功", JustToken.token, user.UserID);
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.Error("[VisitorLogin]: " + ex.ToString());
-                return "登录失败";
+                return LoginResultInfo(false, "登陆失败");
             }
         }
 
