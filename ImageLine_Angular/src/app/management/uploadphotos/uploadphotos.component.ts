@@ -49,10 +49,10 @@ export class UploadphotosComponent implements OnInit {
     formdata.append("imageyear",this.ImageTime.getFullYear().toString());
     formdata.append("imageMonth",this.ImageTime.getMonth().toString());
     formdata.append("imageOverview",this.ImageOverview)
-    formdata.append("themeName",this.ThemeName);
+    formdata.append("themeName","test");
     formdata.append("imageDescription",this.ImageDescription);
 
-    this.service.UploadImage(formdata).subscribe(
+    this.service.Upload(formdata).subscribe(
       (data :boolean) =>{
         if(data)
         {

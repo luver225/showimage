@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { RegisterDto } from 'src/app/shared/dto';
 import { Service } from 'src/app/shared/service';
+import { UserDto } from 'src/app/shared/dto';
 
 @Component({
   selector: 'app-register',
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     this.needVisibility = true;
     this.registerResult = "注册中...";
 
-    let register = new RegisterDto();
+    let register = new UserDto();
     register.UserName = this.form.controls.userName.value;
     register.PassWord= this.form.controls.password.value;
 

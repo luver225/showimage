@@ -7,15 +7,17 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Web;
 using System.Web.Http;
+using static ImageLine.Utility.ImageManager;
 
 namespace ImageLine.Controllers
 {
     public class ShowImageController : ApiController
     {
         [HttpGet]
-        [Route("api/ShowImage/image/{id}")]
-        public HttpResponseMessage Download([FromUri] int id)
+        [Route("api/ShowImage/image/Original/{id}")]
+        public HttpResponseMessage DownloadOriginal([FromUri] int id)
         {
             try
             {
@@ -33,7 +35,28 @@ namespace ImageLine.Controllers
             {
                 return null;
             }
+        }
 
+        [HttpGet]
+        [Route("api/ShowImage/image/Simple/{id}")]
+        public HttpResponseMessage DownloadSimple([FromUri] int id)
+        {
+            try
+            {
+                using (var context = new ServiceContext())
+                {
+                    var filepath = context.Image.Find(id).ImageSimplePath;
+                    var fileStream = ImageManager.LoadFile(filepath);
+                    HttpResponseMessage httpResponse = new HttpResponseMessage(HttpStatusCode.OK);
+                    httpResponse.Content = new StreamContent(fileStream);
+                    httpResponse.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
+                    return httpResponse;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         [HttpGet]
@@ -190,5 +213,32 @@ namespace ImageLine.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/ShowImage/test")]
+        public void Test()
+        {
+            try
+            {
+                //TEST
+                var theme = HttpContext.Current.Request["themeName"];
+
+                //获得原始图和缩略图要保存的路径
+                var imageOriginalPath = CreatefilePath(theme, ImageType.OriginalImage);
+                var imageSimplePath = CreatefilePath(theme, ImageType.SimpleImage);
+
+                var imageInputStream = HttpContext.Current.Request.Files["file"].InputStream;
+
+                //保存原始图
+                SaveFile(imageInputStream, imageOriginalPath);
+
+                //保存缩略图
+                CompressImage(imageOriginalPath, imageSimplePath);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

@@ -42,9 +42,15 @@ export class Service {
   }
 
   //ShowImage
-  Download(id:number)
+  DownloadOriginal(id:number)
   {
-    var url = this.baseUrl+ "/ShowImage/image/" + id;
+    var url = this.baseUrl+ "/ShowImage/image/Original/" + id;
+    return this.http.get(url,{responseType: 'blob'});
+  }
+
+  DownloadSimple(id:number)
+  {
+    var url = this.baseUrl+ "/ShowImage/image/Simple/" + id;
     return this.http.get(url,{responseType: 'blob'});
   }
 

@@ -16,7 +16,6 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-
         <div nz-row class="login-form-margin">
           <div nz-col [nzSpan]="12">
               <span  *ngIf="needVisibility" class = "failed">{{loginResult}}</span>
@@ -24,10 +23,10 @@
           <div nz-col [nzSpan]="12">
           </div>
         </div>
-        <button  nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="login()">登录</button>
-        <button routerLink="/login/vistor" routerLinkActive="active" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">游客</button>
-        <button routerLink="/login/register" routerLinkActive="active" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">注册</button>
       </form>
+      <button  nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="login()">登录</button>
+      <button routerLink="/login/vistor" routerLinkActive="active" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">游客</button>
+      <button routerLink="/login/register" routerLinkActive="active" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">注册</button>
     </div>
     <div nz-col nzSpan="8"></div>
   </div>

@@ -11,8 +11,7 @@
 
 
   nz-content {
-    background: rgba(16, 142, 233, 1);
-    color: #fff;
+    background: #fff;
     min-height: 120px;
     line-height: 100vh;
 
@@ -20,5 +19,13 @@
 
   nz-layout {
     margin-bottom: 48px;
+    background: #fff;
   }
 
+  .content{
+    margin-top: 50px;
+  }
+
+  nz-select {
+    width: 120px;
+  }

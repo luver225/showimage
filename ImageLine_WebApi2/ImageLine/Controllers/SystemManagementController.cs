@@ -25,10 +25,23 @@ namespace ImageLine.Controllers
                     var image = new Image();
 
                     var theme = HttpContext.Current.Request["themeName"];
+
+                    //获得原始图和缩略图要保存的路径
                     var imageOriginalPath = CreatefilePath(theme, ImageType.OriginalImage);
+                    var imageSimplePath = CreatefilePath(theme, ImageType.SimpleImage);
+
                     var imageInputStream = HttpContext.Current.Request.Files["file"].InputStream;
+
+                    //保存原始图
                     SaveFile(imageInputStream, imageOriginalPath);
+
+                    //保存缩略图
+                    CompressImage(imageOriginalPath, imageSimplePath);
+
+
+                    //保存数据库
                     image.ImageOriginalPath = imageOriginalPath;
+                    image.ImageSimplePath = imageSimplePath;
                     image.ImageDescription = HttpContext.Current.Request["imageDescription"];
                     image.ImageOverview = HttpContext.Current.Request["imageOverview"];
                     image.Month = int.Parse(HttpContext.Current.Request["imageMonth"]);
@@ -37,9 +50,7 @@ namespace ImageLine.Controllers
                     //前端Todo...
                     image.ThemeID = int.Parse(HttpContext.Current.Request["themeID"]);
                     image.UserID = int.Parse(HttpContext.Current.Request["userID"]);
-
                     image.Updatetime = DateTime.Now;
-
                     context.Image.Add(image);
                     context.SaveChanges();
                     return true;

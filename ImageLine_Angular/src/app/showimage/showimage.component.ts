@@ -26,6 +26,12 @@ export class ShowimageComponent implements OnInit {
 
   }
 
+  optionList = [
+    { label: 'Lucy', value: 'lucy', age: 20 },
+    { label: 'Jack', value: 'jack', age: 22 }
+  ];
+
+  
   ngOnInit() {
 
   }
@@ -34,7 +40,7 @@ export class ShowimageComponent implements OnInit {
   download()
   {
 
-    this.service.DownloadImage(7).subscribe(
+    this.service.DownloadSimple(7).subscribe(
       (data:Blob) =>{
         var reader = new FileReader();
          reader.onload = (event:any) => {
