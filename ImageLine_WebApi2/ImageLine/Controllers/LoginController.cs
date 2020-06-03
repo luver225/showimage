@@ -78,7 +78,7 @@ namespace ImageLine.Controllers
                         return LoginResultInfo(false, "该用户未授权");
                     }
 
-                    if (user.License.Equals(MD5Password.Encryption(visitorLogin.License)) == false)
+                    if (user.License.Equals(visitorLogin.License) == false)
                     {
                         LogHelper.Error("[VisitorLogin]：License is wrong");
                         return LoginResultInfo(false, "授权码不正确");

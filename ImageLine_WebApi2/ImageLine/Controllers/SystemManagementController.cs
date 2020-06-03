@@ -100,6 +100,7 @@ namespace ImageLine.Controllers
                     var userEntity = context.User.Find(userDto.UserID);
                     userEntity.PassWord = MD5Password.Encryption(userDto.PassWord);
                     userEntity.Updatetime = DateTime.Now;
+                    context.SaveChanges();
                     return true;
                 }
             }
@@ -118,7 +119,7 @@ namespace ImageLine.Controllers
                 using (var context = new ServiceContext())
                 {
                     var userEntity = context.User.Find(licenseChange.UserID);
-                    userEntity.License = MD5Password.Encryption(licenseChange.License);
+                    userEntity.License = licenseChange.License;
                     userEntity.Updatetime = DateTime.Now;
                     context.SaveChanges();
                     return true;
@@ -175,7 +176,7 @@ namespace ImageLine.Controllers
 
                     if (Directory.Exists(directoryPath_Original) && File.GetAttributes(directoryPath_Original) == FileAttributes.Directory)
                     {
-                        Directory.Delete(directoryPath_Simple, true);
+                        Directory.Delete(directoryPath_Original, true);
                     }
                     context.Theme.Remove(themeEntity);
                     context.SaveChanges();
@@ -188,7 +189,7 @@ namespace ImageLine.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpGet]
         [Route("api/SystemManagement/user/{id}")]
         public UserInfoDto GetUserInfo([FromUri]int id)
         {

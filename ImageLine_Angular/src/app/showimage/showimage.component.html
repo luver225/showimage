@@ -21,7 +21,7 @@
           <button nz-button  [nzType]="'primary'"  (click) = "search()"> 搜索</button> 
         </div>
         <div nz-col nzSpan="11"> </div>
-        <div nz-col nzSpan="2"> 
+        <div nz-col nzSpan="2" *ngIf="isUser"> 
           系统设置
         <a routerLink="/management" routerLinkActive="active"> 
           <i nz-icon nzType="setting" nzTheme="outline"  class = "i" ></i>

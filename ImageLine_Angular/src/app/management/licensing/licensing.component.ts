@@ -71,8 +71,12 @@ export class LicensingComponent implements OnInit {
     this.service.LicenseChange(licenseChangeDto).subscribe(
       (data) => {
         if (data) {
+      
           this.needVisibility = true;
           this.loginResult = "授权成功";
+          this.licenseValue = this.form.controls.license.value;
+
+          
         }
         else {
           this.needVisibility = true;

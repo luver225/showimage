@@ -140,7 +140,12 @@ export class UploadphotosComponent implements OnInit {
        }
        data.forEach(element => {
         this.themeList.push({name:element.ThemeName,id:element.ThemeID});
-       })
+      
+       });
+       if(this.themeList.length == 0)
+       {
+         alert("系统中没有主题,请至少创建一个主题");
+       }
      }
    );
   }

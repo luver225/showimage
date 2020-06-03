@@ -57,6 +57,7 @@ export class ChangepasswordComponent implements OnInit {
         if (data) {
           this.needVisibility = true;
           this.loginResult = "修改成功";
+
         }
         else {
           this.needVisibility = true;

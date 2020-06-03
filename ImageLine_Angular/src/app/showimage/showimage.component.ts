@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../shared/service';
 import { Router,  } from '@angular/router';
 import { ThemeDto, ShowImageDto } from '../shared/dto';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -26,7 +27,15 @@ export class ShowimageComponent implements OnInit {
     }
 
     ngOnInit() {
-
+     
+      if(localStorage.getItem("IsUser") == "true")
+      {
+        this.isUser = true;
+      }
+      else
+      {
+        this.isUser = false;
+      }
 
       for(let i = 1 ; i < 13 ; i++)
       {
@@ -37,7 +46,7 @@ export class ShowimageComponent implements OnInit {
     }
 
 
-
+  isUser:boolean;
   themeList = [];
   monthList = [];
 
