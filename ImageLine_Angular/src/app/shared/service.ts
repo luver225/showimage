@@ -8,8 +8,6 @@ export class Service {
   constructor(private http: HttpClient) { 
   }
   
-  UserId:number;
-
   //angular 验证
   isLoginSuccess:boolean = false; 
 
@@ -19,7 +17,7 @@ export class Service {
 
   httpOptions= {headers: new HttpHeaders({})};
 
-  baseUrl:string = "http://localhost:25169/api";
+  baseUrl:string = "http://47.100.162.245:12351/api";
 
 
   //Login
@@ -62,7 +60,7 @@ export class Service {
 
   GetImageInfos(themeID:number,year:number,month:number,userID:number)
   {
-    var url = this.baseUrl+ "/ShowImage/images/" + themeID + year + month + userID;
+    var url = this.baseUrl+ "/ShowImage/images/" + themeID + "/"+year +"/"+ month + "/"+ userID;
     return this.http.get(url);
   }
 

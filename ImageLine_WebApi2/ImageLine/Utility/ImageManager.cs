@@ -15,7 +15,7 @@ namespace ImageLine.Utility
         {
             var uploadFile = HttpContext.Current.Request.Files["file"];
 
-            string filepath = imageType == ImageType.SimpleImage ? "E:\\轨迹相册\\缩略图\\" + theme : "E:\\轨迹相册\\原图\\" + theme;
+            string filepath = imageType == ImageType.SimpleImage ? "C:\\轨迹相册\\缩略图\\" + theme : "C:\\轨迹相册\\原图\\" + theme;
 
             if (!Directory.Exists(filepath))
             {

@@ -3,116 +3,43 @@
       <div nz-row>
         <div nz-col nzSpan="4">
           主题：
-          <nz-select [(ngModel)]="selectedValue"  nzAllowClear >
-              <nz-option *ngFor="let option of optionList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+          <nz-select [(ngModel)]="selectedTheme"  nzAllowClear name = "selectedTheme">
+              <nz-option *ngFor="let option of themeList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
             </nz-select>
         </div>
-        
-       <div nz-col nzSpan="4">
-          时间：
-          <nz-month-picker [(ngModel)]="date" (ngModelChange)="onChange($event)" nzPlaceHolder="Select month"></nz-month-picker>
+       <div nz-col nzSpan="6">
+          年：
+      <nz-year-picker [(ngModel)]="year" name = "year"  nzPlaceHolder="Select year"></nz-year-picker>
         </div>
-
-        <div nz-col nzSpan="14"> </div>
-
+        <div nz-col nzSpan="4">
+          月：
+          <nz-select [(ngModel)]="selectedMonth"  name = "selectedMonth"  nzAllowClear >
+            <nz-option *ngFor="let option of monthList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
+          </nz-select>
+        </div>
+        <div nz-col nzSpan="2">
+          <button nz-button  [nzType]="'primary'"  (click) = "search()"> 搜索</button> 
+        </div>
+        <div nz-col nzSpan="6"> </div>
         <div nz-col nzSpan="2"> 
           系统设置
         <a routerLink="/management" routerLinkActive="active"> <i nz-icon nzType="setting" nzTheme="outline">
-        
         </i></a>
- 
         </div>
-      
       </div>
 
     </nz-header>
     <nz-content class = "content">
         <div nz-row>
-            <div nz-col nzSpan="8"></div>
-            <div nz-col nzSpan="8">
-                <nz-timeline>
-                    <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                    <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                    <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                    <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-          
-                            <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                          <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                          <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-          
-          
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                          <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                          <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-          
-          
-          
-          
-          
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-          
-          
-          
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Solve initial network problems 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Technical testing 2015-09-01</nz-timeline-item>
-                  <nz-timeline-item>Network problems being solved 2015-09-01</nz-timeline-item>
+            <div nz-col nzSpan="5"></div>
+            <div nz-col nzSpan="14">
+                <nz-timeline *ngFor="let item of items" class = "line">
+                    <nz-timeline-item> 
+                      <app-imageinfo [item]="item"></app-imageinfo>
+                    </nz-timeline-item>
                 </nz-timeline>
             </div>
-            <div nz-col nzSpan="8"></div>
+            <div nz-col nzSpan="5"></div>
 
             </div>
       

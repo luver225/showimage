@@ -1,4 +1,4 @@
-<div nz-row class="_login">
+<div nz-row class="_login"  *ngIf="uploadvis">
     <div nz-col nzSpan="8"></div>
     <div nz-col nzSpan="8" nzJustify="space-around" nzAlign="middle">
       <form nz-form>
@@ -29,11 +29,11 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="5">主题</nz-form-label>
           <nz-form-control  [nzSpan]="12" >
-            <nz-select ngModel="lucy" name = "theme">
-              <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-              <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-              <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+
+            <nz-select [(ngModel)]="selectedTheme"  nzAllowClear  name="selectedTheme">
+              <nz-option *ngFor="let option of themeList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
             </nz-select>
+
           </nz-form-control>
         </nz-form-item>
 
@@ -51,4 +51,26 @@
       </form>
     </div>
     <div nz-col nzSpan="8"></div>
-  </div>
+</div>
+
+
+<nz-result *ngIf="successvis"
+nzStatus="success"
+nzTitle="图片上传成功"
+>
+<div nz-result-extra>
+  <button (click) = "back()" nz-button nzType="primary">继续上传</button>
+  <button routerLink="/showimage" routerLinkActive="active"  nz-button>返回首页</button>
+</div>
+</nz-result>
+
+
+<nz-result *ngIf="failvis"
+nzStatus="error"
+nzTitle="图片上传失败"
+>
+<div nz-result-extra>
+  <button (click) = "back()"  nz-button nzType="primary">重新上传</button>
+  <button routerLink="/showimage" routerLinkActive="active"  nz-button>返回首页</button>
+</div>
+</nz-result>

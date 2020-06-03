@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../shared/service';
-import { Router } from '@angular/router';
+import { Router,  } from '@angular/router';
+import { ThemeDto, ShowImageDto } from '../shared/dto';
 
 
 
@@ -22,33 +23,95 @@ export class ShowimageComponent implements OnInit {
     //   this.route.navigate(['/loginfail']);
     // }
 
+    }
+
+    ngOnInit() {
+
+
+      for(let i = 1 ; i < 13 ; i++)
+      {
+        this.monthList.push({name:i+"月",value:i })
+      }
+
+      this.getAllTheme();
+    }
+
+
+
+  themeList = [];
+  monthList = [];
+
+  items = [];
+  
  
 
-  }
-
-  optionList = [
-    { label: 'Lucy', value: 'lucy', age: 20 },
-    { label: 'Jack', value: 'jack', age: 22 }
-  ];
-
-  
-  ngOnInit() {
-
-  }
+  selectedTheme;
+  selectedMonth;
+  year;
 
 
-  download()
+  search()
   {
+    var themeID;
+    if(this.selectedTheme == null)
+    {
+      themeID = 0;
+    }
+    else
+    {
+      themeID = this.selectedTheme.id;
+    }
+ 
+    var year;
+    if(this.year == null)
+    {
+      year = 0;
+    }
+    else
+    {
+       year = this.year.getFullYear();
+    }
 
-    this.service.DownloadSimple(7).subscribe(
-      (data:Blob) =>{
-        var reader = new FileReader();
-         reader.onload = (event:any) => {
-        this.testSrc = event.target.result;
+    
+    var month;
+    if(this.selectedMonth == null)
+    {
+      month = 0;
+    }
+    else
+    {
+      month = this.selectedMonth.value;
+    }
+  
+    var UserId = parseInt(localStorage.getItem("UserId"));
+
+    this.service.GetImageInfos(themeID,year,month,UserId).subscribe(
+      (data:ShowImageDto[]) =>{
+
+        if(data == null)
+        {
+          return;
         }
-        reader.readAsDataURL(data);
+        this.items = data;
       }
     )
+  }
+
+
+  getAllTheme()
+  {
+   this.themeList = [];
+   this.service.GetThemes(parseInt(localStorage.getItem("UserId"))).subscribe(
+     (data:ThemeDto[]) =>{
+       if(data == null)
+       {
+         return;
+       }
+       data.forEach(element => {
+        this.themeList.push({name:element.ThemeName,id:element.ThemeID});
+       })
+     }
+   );
   }
 
 

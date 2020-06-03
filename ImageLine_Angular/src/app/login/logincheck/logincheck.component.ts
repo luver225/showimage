@@ -45,7 +45,7 @@ export class LogincheckComponent implements OnInit {
           this.service.token = data.Token;;
           this.service.httpOptions.headers = this.service.httpOptions.headers.set('Authorization',"Bearer "+data.Token);
           this.service.isLoginSuccess = true;
-          this.service.UserId = data.UserID;
+          localStorage.setItem("UserId",data.UserID.toString());
           this.needVisibility = false;
           this.route.navigate(['/showimage']);
         }

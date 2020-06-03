@@ -1,0 +1,62 @@
+记录时间：2020-05-31 14:38:49,163  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 14:38:49,193  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:19,430  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:19,518  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:21,806  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:21,821  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:22,669  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:22,684  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:23,149  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:23,163  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:23,341  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:23,355  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:23,877  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:23,892  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:24,053  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:24,068  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:33,214  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:33,228  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:35,230  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:35,245  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:33:37,070  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:33:37,086  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 21:47:06,997  日志级别：ERROR 错误描述：[ShowImage]:!hasTheme && !hasYear && !hasMonth
+ 
+记录时间：2020-05-31 21:47:07,012  日志级别：ERROR 错误描述：[ShowImage]:System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ImageLine.Controllers.ShowImageController.GetImageInfos(Int32 themeID, Int32 year, Int32 month, Int32 userID) 位置 C:\Users\rongkun.lu\Desktop\showimage_ssh\showimage\ImageLine_WebApi2\ImageLine\Controllers\ShowImageController.cs:行号 202
+ 
+记录时间：2020-05-31 22:13:21,689  日志级别：ERROR 错误描述：[UserLogin]:user == null
+ 

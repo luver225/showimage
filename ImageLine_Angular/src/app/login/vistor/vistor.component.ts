@@ -32,26 +32,6 @@ export class VistorComponent implements OnInit {
   vistor()
   { 
 
-    this.needVisibility = true;
-    this.loginResult = "登录中...";
-
-      let visitorLoginDto = new LienceDto();
-      visitorLoginDto.UserName = this.form.controls.userName.value;
-      visitorLoginDto.License = this.form.controls.password.value;
-  
-      this.service.VisitorLogin(visitorLoginDto).subscribe(
-        (data: string) => {
-          if (data == "登录成功") {
-            this.needVisibility = false;
-            this.route.navigate(['/showimage']);
-          }
-          else {
-            this.needVisibility = true;
-            this.loginResult = data;
-          }
-        }
-      )
-
   }
 
 }

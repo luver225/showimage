@@ -7,7 +7,7 @@ import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { LoginComponent } from './login/login.component';
 import { ShowimageComponent } from './showimage/showimage.component';
@@ -23,6 +23,7 @@ import { ThememanagerComponent } from './management/thememanager/thememanager.co
 import { PhotomanagementComponent } from './management/photomanagement/photomanagement.component';
 import { ChangepasswordComponent } from './management/changepassword/changepassword.component';
 import { LicensingComponent } from './management/licensing/licensing.component';
+import { ImageinfoComponent } from './showimage/imageinfo/imageinfo.component';
 ;
 
 registerLocaleData(en);
@@ -42,7 +43,8 @@ registerLocaleData(en);
     ThememanagerComponent,
     PhotomanagementComponent,
     ChangepasswordComponent,
-    LicensingComponent
+    LicensingComponent,
+    ImageinfoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,10 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  providers: [Service,{ provide: NZ_I18N, useValue: en_US }],
+  providers: [Service,
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: LocationStrategy, useClass: HashLocationStrategy, }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

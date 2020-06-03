@@ -125,9 +125,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005251424514_init.cs" />
-    <Compile Include="Migrations\202005251424514_init.Designer.cs">
-      <DependentUpon>202005251424514_init.cs</DependentUpon>
+    <Compile Include="Migrations\202006021623442_init.cs" />
+    <Compile Include="Migrations\202006021623442_init.Designer.cs">
+      <DependentUpon>202006021623442_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -151,8 +152,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005251424514_init.resx">
-      <DependentUpon>202005251424514_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006021623442_init.resx">
+      <DependentUpon>202006021623442_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

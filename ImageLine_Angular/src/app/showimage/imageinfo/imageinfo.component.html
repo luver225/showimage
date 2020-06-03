@@ -1,0 +1,31 @@
+<div nz-row>
+    <div nz-col nzSpan="3">
+
+        <label >{{date}}</label>
+    </div>
+    <div nz-col nzSpan="10">
+        <img class="img" [src]="simpleSrc">
+    </div>
+    <div nz-col nzSpan="10">
+        <nz-form-item>
+            <nz-form-label>标题</nz-form-label>
+            <input type="text" nz-input [(ngModel)]="title" disabled/>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label>描述</nz-form-label>
+            <textarea nz-input [(ngModel)]="description"  disabled></textarea>
+        </nz-form-item>
+
+        <nz-form-item>
+            <button nz-button [nzType]="'primary'" (click)="showModal()"><span>查看大图</span></button>
+            <nz-modal [nzFooter] = null    [nzWidth] = "nzWidth" [(nzVisible)]="isVisible"  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                <div><img [src]="OriginalSrc" class="img"></div>
+            </nz-modal>
+        </nz-form-item>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>

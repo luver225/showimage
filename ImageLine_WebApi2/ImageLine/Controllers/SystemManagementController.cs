@@ -44,7 +44,7 @@ namespace ImageLine.Controllers
                     image.ImageSimplePath = imageSimplePath;
                     image.ImageDescription = HttpContext.Current.Request["imageDescription"];
                     image.ImageOverview = HttpContext.Current.Request["imageOverview"];
-                    image.Month = int.Parse(HttpContext.Current.Request["imageMonth"]);
+                    image.Month = int.Parse(HttpContext.Current.Request["imageMonth"]) + 1;
                     image.Year = int.Parse(HttpContext.Current.Request["imageyear"]);
 
                     //前端Todo...
@@ -137,7 +137,7 @@ namespace ImageLine.Controllers
         [Route("api/SystemManagement/theme")]
         public bool AddTheme([FromBody]ThemeDto theme)
         {
-            try
+            try 
             {
                 using (var context = new ServiceContext())
                 {
@@ -145,6 +145,7 @@ namespace ImageLine.Controllers
                     themeEntity.UserID = theme.UserID;
                     themeEntity.ThemeName = theme.ThemeName;
                     themeEntity.Updatetime = DateTime.Now;
+                    context.Theme.Add(themeEntity);
                     context.SaveChanges();
                     return true;
                 }
@@ -166,8 +167,8 @@ namespace ImageLine.Controllers
                     var themeEntity = context.Theme.Find(id);
 
                     var name = themeEntity.ThemeName;
-                    var directoryPath_Simple = "E:\\轨迹相册\\缩略图\\" + name;
-                    var directoryPath_Original = "E:\\轨迹相册\\缩略图\\" + name;
+                    var directoryPath_Simple = "C:\\轨迹相册\\缩略图\\" + name;
+                    var directoryPath_Original = "C:\\轨迹相册\\缩略图\\" + name;
 
                     if (Directory.Exists(directoryPath_Simple) && File.GetAttributes(directoryPath_Simple) == FileAttributes.Directory)
                     {
