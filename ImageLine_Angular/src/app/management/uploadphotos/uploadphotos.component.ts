@@ -4,6 +4,7 @@ import { Service } from 'src/app/shared/service';
 import { ThemeDto } from 'src/app/shared/dto';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
 
 
 @Component({
@@ -16,8 +17,9 @@ export class UploadphotosComponent implements OnInit {
   constructor(
     private service:Service,
     private route: Router,
+    private i18n: NzI18nService
   ) { 
-   
+    this.i18n.setLocale(zh_CN);
   }
 
   uploadvis;
@@ -36,6 +38,7 @@ export class UploadphotosComponent implements OnInit {
   themeList = [];
   selectedTheme;
 
+ 
   ngOnInit() {
 
     this.uploadvis = true;
@@ -101,6 +104,9 @@ export class UploadphotosComponent implements OnInit {
           this.successvis = false;
           this.failvis = true;
         }
+      },
+      (error: any) => {
+        alert("网络发生异常 , 请重试！")
       }
     )
     

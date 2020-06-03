@@ -26,7 +26,8 @@ import { LicensingComponent } from './management/licensing/licensing.component';
 import { ImageinfoComponent } from './showimage/imageinfo/imageinfo.component';
 ;
 
-registerLocaleData(en);
+import zh from '@angular/common/locales/zh';
+registerLocaleData(zh);
 
 @NgModule({
   declarations: [

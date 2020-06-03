@@ -42,11 +42,15 @@ export class ThemeDto {
 
 export class UserChangeDto {
   UserID:number;
-  UserName:string;
   PassWord:string;
 }
 
 export class LicenseChangeDto {
   UserID:number;
+  License:string;
+}
+
+export class UserInfoDto {
+  Name:string;
   License:string;
 }

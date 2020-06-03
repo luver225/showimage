@@ -33,6 +33,14 @@ export class ThememanagerComponent implements OnInit {
         {
           this.getAllTheme();
         }
+        else
+        {
+          alert("删除失败 , 请重试！")
+        }
+      },
+      (error: any) => {
+
+        alert("网络发生异常 , 请重试！")
       }
     )
     
@@ -50,7 +58,8 @@ export class ThememanagerComponent implements OnInit {
       data.forEach(element => {
        this.items.push({name:element.ThemeName,id:element.ThemeID});
       })
-    }
+    },
+    
   );
  }
 
@@ -76,7 +85,13 @@ export class ThememanagerComponent implements OnInit {
         {
           this.getAllTheme();
          }
+      },
+
+      (error: any) => {
+        console.log(error);
+        alert("网络发生异常 , 请重试！")
       }
+
     ) 
   }
 

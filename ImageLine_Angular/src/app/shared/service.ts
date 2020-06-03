@@ -17,7 +17,7 @@ export class Service {
 
   httpOptions= {headers: new HttpHeaders({})};
 
-  baseUrl:string = "http://47.100.162.245:12351/api";
+  baseUrl:string = "http://localhost:12351/api";
 
 
   //Login
@@ -99,6 +99,12 @@ export class Service {
   {
     var url = this.baseUrl+ "/SystemManagement/theme/" + id;
     return this.http.delete(url);
+  }
+
+  GetUserInfo(id:number)
+  {
+    var url = this.baseUrl+ "/SystemManagement/user/" + id;
+    return this.http.get(url);
   }
 
 }

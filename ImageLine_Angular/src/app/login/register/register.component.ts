@@ -51,6 +51,9 @@ export class RegisterComponent implements OnInit {
           this.needVisibility = true;
           this.registerResult = data;
       },
+      (error: any) => {
+        alert("网络发生异常 , 请重试！")
+      }
     )
   }
 }

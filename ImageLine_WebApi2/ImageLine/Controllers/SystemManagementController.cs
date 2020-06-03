@@ -12,7 +12,6 @@ namespace ImageLine.Controllers
 {
     public class SystemManagementController : ApiController
     {
-
         //image crud
         [HttpPost]
         [Route("api/SystemManagement/image")]
@@ -99,7 +98,6 @@ namespace ImageLine.Controllers
                 using (var context = new ServiceContext())
                 {
                     var userEntity = context.User.Find(userDto.UserID);
-                    userEntity.UserName = userDto.UserName;
                     userEntity.PassWord = MD5Password.Encryption(userDto.PassWord);
                     userEntity.Updatetime = DateTime.Now;
                     return true;
@@ -167,8 +165,8 @@ namespace ImageLine.Controllers
                     var themeEntity = context.Theme.Find(id);
 
                     var name = themeEntity.ThemeName;
-                    var directoryPath_Simple = "C:\\轨迹相册\\缩略图\\" + name;
-                    var directoryPath_Original = "C:\\轨迹相册\\缩略图\\" + name;
+                    var directoryPath_Simple = GetAppconfigSimplePath(ImageType.SimpleImage) + name;
+                    var directoryPath_Original = GetAppconfigSimplePath(ImageType.OriginalImage) + name;
 
                     if (Directory.Exists(directoryPath_Simple) && File.GetAttributes(directoryPath_Simple) == FileAttributes.Directory)
                     {
@@ -190,6 +188,28 @@ namespace ImageLine.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/SystemManagement/user/{id}")]
+        public UserInfoDto GetUserInfo([FromUri]int id)
+        {
+            try
+            {
+                using (var context = new ServiceContext())
+                {
+                    var userEntity = context.User.Find(id);
+                    var userName = userEntity.UserName;
+                    var license = userEntity.License;
 
+                    return new UserInfoDto {
+                        Name = userName,
+                        License = license
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

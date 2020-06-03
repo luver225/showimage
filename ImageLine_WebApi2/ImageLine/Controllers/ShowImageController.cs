@@ -90,6 +90,11 @@ namespace ImageLine.Controllers
         {
             try
             {
+                if (!JustToken.TokenCheck())
+                {
+                    return null;
+                }
+
                 var hasTheme = themeID != 0;
                 var hasYear = year != 0;
                 var hasMonth = month != 0;

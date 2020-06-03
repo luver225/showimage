@@ -98,8 +98,6 @@ namespace ImageLine.Dto
     {
         public int UserID { get; set; }
 
-        public string UserName { get; set; }
-
         public string PassWord { get; set; }
     }
 
@@ -110,4 +108,10 @@ namespace ImageLine.Dto
         public string License { get; set; }
     }
 
+    public class UserInfoDto
+    {
+        public string Name { get; set; }
+
+        public string License { get; set; }
+    }
 }

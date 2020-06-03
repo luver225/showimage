@@ -1,17 +1,17 @@
 <nz-layout>
     <nz-header>
       <div nz-row>
-        <div nz-col nzSpan="4">
+        <div nz-col nzSpan="3">
           主题：
-          <nz-select [(ngModel)]="selectedTheme"  nzAllowClear name = "selectedTheme">
+          <nz-select class ="theme"  [(ngModel)]="selectedTheme"  nzAllowClear name = "selectedTheme">
               <nz-option *ngFor="let option of themeList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
             </nz-select>
         </div>
-       <div nz-col nzSpan="6">
+       <div nz-col nzSpan="3">
           年：
-      <nz-year-picker [(ngModel)]="year" name = "year"  nzPlaceHolder="Select year"></nz-year-picker>
+      <nz-year-picker  class ="year" [(ngModel)]="year" name = "year"  nzPlaceHolder=""></nz-year-picker>
         </div>
-        <div nz-col nzSpan="4">
+        <div nz-col nzSpan="3">
           月：
           <nz-select [(ngModel)]="selectedMonth"  name = "selectedMonth"  nzAllowClear >
             <nz-option *ngFor="let option of monthList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
@@ -20,11 +20,12 @@
         <div nz-col nzSpan="2">
           <button nz-button  [nzType]="'primary'"  (click) = "search()"> 搜索</button> 
         </div>
-        <div nz-col nzSpan="6"> </div>
+        <div nz-col nzSpan="11"> </div>
         <div nz-col nzSpan="2"> 
           系统设置
-        <a routerLink="/management" routerLinkActive="active"> <i nz-icon nzType="setting" nzTheme="outline">
-        </i></a>
+        <a routerLink="/management" routerLinkActive="active"> 
+          <i nz-icon nzType="setting" nzTheme="outline"  class = "i" ></i>
+        </a>
         </div>
       </div>
 
@@ -35,14 +36,12 @@
             <div nz-col nzSpan="14">
                 <nz-timeline *ngFor="let item of items" class = "line">
                     <nz-timeline-item> 
-                      <app-imageinfo [item]="item"></app-imageinfo>
+                      <app-imageinfo [item]="item" (deleteEvent) = "deleteSuccess()"></app-imageinfo>
                     </nz-timeline-item>
                 </nz-timeline>
             </div>
             <div nz-col nzSpan="5"></div>
-
             </div>
-      
     </nz-content>
   </nz-layout>
 

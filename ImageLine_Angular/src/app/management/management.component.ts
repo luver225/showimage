@@ -19,7 +19,7 @@ export class ManagementComponent implements OnInit {
   }
 
   items =[
-    {name:"回到首页",path:"/showimage"},
+    {name:"<<返回首页",path:"/showimage"},
     {name:"上传照片",path:"/management/uploadphotos"},
     {name:"主题管理",path:"/management/thememanager"},
     {name:"相册管理",path:"/management/photomanagement"},

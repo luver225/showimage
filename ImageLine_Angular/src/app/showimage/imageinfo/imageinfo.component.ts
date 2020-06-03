@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { ShowImageDto } from 'src/app/shared/dto';
 import { Service } from 'src/app/shared/service';
 import {ElementRef,Renderer2} from '@angular/core';
@@ -34,6 +34,9 @@ export class ImageinfoComponent implements OnInit,OnChanges{
         this.nzWidth = this.el.nativeElement.querySelector('.img').style.width;
        }
        reader.readAsDataURL(data);
+      },
+      (error:any) =>{
+        alert("网络发生异常 , 请重试！");
       }
     )
   }
@@ -49,6 +52,9 @@ export class ImageinfoComponent implements OnInit,OnChanges{
   }
 
   @Input() item: ShowImageDto
+
+  @Output() deleteEvent = new EventEmitter<string>();
+
   simpleSrc;
   title;
   description;
@@ -69,8 +75,30 @@ export class ImageinfoComponent implements OnInit,OnChanges{
        reader.readAsDataURL(data);
       }
     )
-
-
-
   }
+
+  deleteimage()
+  {
+    this.service.DeleteImage(this.item.ImageID).subscribe(
+      data => {
+        if(data)
+        {
+          this.deleteEvent.emit("success");
+        }
+        else
+        {
+          alert("删除失败,请重试");
+        } 
+      },
+      error =>{
+        alert("网络异常,请重试");
+      }
+    )
+  }
+
+
+
+
+
+
 }

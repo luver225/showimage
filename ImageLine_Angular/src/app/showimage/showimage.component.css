@@ -1,7 +1,7 @@
 
   nz-header,
   nz-footer {
-    background: #001529;
+    background: #003366;
     color: #fff;
   }
 
@@ -27,5 +27,42 @@
   }
 
   nz-select {
-    width: 120px;
+    width: 100px;
+  }
+
+
+  .theme{
+    width: 100px;
+  }
+
+  .year{
+    width: 100px;
+  }
+
+  .ant-btn-primary {
+    color: #fff;
+    background-color:#003366;
+    border-color:#fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+  }
+
+  i{
+    color:#fff;
+  }
+
+ 
+
+  [nz-carousel-content] {
+    text-align: center;
+    height: 500px;
+    line-height: 500px;
+    background: #364d79;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  h3 {
+    color: #fff;
+    margin-bottom: 0;
   }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -11,11 +12,19 @@ namespace ImageLine.Utility
 {
     public class ImageManager
     {
+
+        public static string GetAppconfigSimplePath(ImageType imageType)
+        {
+            return imageType == ImageType.SimpleImage ? ConfigurationManager.AppSettings["simplePath"] : ConfigurationManager.AppSettings["originalPath"];
+        }
+
         public static string CreatefilePath(string theme, ImageType imageType)
         {
             var uploadFile = HttpContext.Current.Request.Files["file"];
 
-            string filepath = imageType == ImageType.SimpleImage ? "C:\\轨迹相册\\缩略图\\" + theme : "C:\\轨迹相册\\原图\\" + theme;
+            string filepath = imageType == ImageType.SimpleImage 
+                ? GetAppconfigSimplePath(ImageType.SimpleImage) + theme 
+                : GetAppconfigSimplePath(ImageType.OriginalImage) + theme;
 
             if (!Directory.Exists(filepath))
             {

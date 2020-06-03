@@ -46,6 +46,7 @@ export class LogincheckComponent implements OnInit {
           this.service.httpOptions.headers = this.service.httpOptions.headers.set('Authorization',"Bearer "+data.Token);
           this.service.isLoginSuccess = true;
           localStorage.setItem("UserId",data.UserID.toString());
+          localStorage.setItem("IsUser","true");
           this.needVisibility = false;
           this.route.navigate(['/showimage']);
         }
@@ -53,6 +54,9 @@ export class LogincheckComponent implements OnInit {
           this.needVisibility = true;
           this.loginResult = data.Reason;
         }
+      },
+      (error: any) => {
+        alert("网络发生异常 , 请重试！")
       }
     )
   }

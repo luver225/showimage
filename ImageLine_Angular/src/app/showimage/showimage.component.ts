@@ -93,6 +93,9 @@ export class ShowimageComponent implements OnInit {
           return;
         }
         this.items = data;
+      },
+      (error:any) =>{
+        alert("网络发生异常 , 请重试！");
       }
     )
   }
@@ -114,6 +117,11 @@ export class ShowimageComponent implements OnInit {
    );
   }
 
+  deleteSuccess()
+  {
+    this.search();
+  }
 
 
+  array = [1, 2, 3, 4];
 }

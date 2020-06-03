@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Service } from 'src/app/shared/service';
 import { Router } from '@angular/router';
-import { LienceDto } from 'src/app/shared/dto';
+import { LienceDto, LoginResultDto } from 'src/app/shared/dto';
 
 @Component({
   selector: 'app-vistor',
@@ -28,10 +28,40 @@ export class VistorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
   vistor()
-  { 
+ {
+    this.needVisibility = true;
+    this.loginResult = "登陆中...";
 
+    let userLoginDto = new LienceDto();
+    userLoginDto.UserName = this.form.controls.userName.value;
+    userLoginDto.License = this.form.controls.password.value;
+
+    this.service.VisitorLogin(userLoginDto).subscribe(
+      (data: LoginResultDto) => {
+        if (data.IsSuccess) {
+          //set token
+          this.service.token = data.Token;;
+          this.service.httpOptions.headers = this.service.httpOptions.headers.set('Authorization',"Bearer "+data.Token);
+          this.service.isLoginSuccess = true;
+          localStorage.setItem("UserId",data.UserID.toString());
+          localStorage.setItem("IsUser","false");
+          this.needVisibility = false;
+          this.route.navigate(['/showimage']);
+        }
+        else {
+          this.needVisibility = true;
+          this.loginResult = data.Reason;
+        }
+      },
+      (error: any) => {
+        alert("网络发生异常 , 请重试！")
+      }
+    )
   }
+
+
+
+
 
 }
