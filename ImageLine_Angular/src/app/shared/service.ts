@@ -12,9 +12,6 @@ export class Service {
   isLoginSuccess:boolean = false; 
 
   //webapi2  验证
-  token:string = ""; 
-
-
   httpOptions= {headers: new HttpHeaders({})};
 
   baseUrl:string = "http://localhost:25169/api";
@@ -60,8 +57,9 @@ export class Service {
 
   GetImageInfos(themeID:number,year:number,month:number,userID:number)
   {
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization',"Bearer "+localStorage.getItem("Token"));
     var url = this.baseUrl+ "/ShowImage/images/" + themeID + "/"+year +"/"+ month + "/"+ userID;
-    return this.http.get(url);
+    return this.http.get(url,this.httpOptions);
   }
 
   //SystemManagement
@@ -73,7 +71,7 @@ export class Service {
 
   DeleteImage(id:number)
   {
-    var url = this.baseUrl+ "/SystemManagement/image/id";
+    var url = this.baseUrl+ "/SystemManagement/image/" + id;
     return this.http.delete(url);
   }
 
@@ -104,6 +102,12 @@ export class Service {
   GetUserInfo(id:number)
   {
     var url = this.baseUrl+ "/SystemManagement/user/" + id;
+    return this.http.get(url);
+  }
+
+  Getimages(id:number)
+  {
+    var url = this.baseUrl+ "/ShowImage/images/" + id;
     return this.http.get(url);
   }
 

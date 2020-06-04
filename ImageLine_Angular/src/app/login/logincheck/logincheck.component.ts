@@ -41,10 +41,8 @@ export class LogincheckComponent implements OnInit {
     this.service.UserLogin(userLoginDto).subscribe(
       (data: LoginResultDto) => {
         if (data.IsSuccess) {
-          //set token
-          this.service.token = data.Token;;
-          this.service.httpOptions.headers = this.service.httpOptions.headers.set('Authorization',"Bearer "+data.Token);
-          this.service.isLoginSuccess = true;
+          localStorage.setItem("Token",data.Token);
+          localStorage.setItem("IsLoginSuccess","true");
           localStorage.setItem("UserId",data.UserID.toString());
           localStorage.setItem("IsUser","true");
           this.needVisibility = false;

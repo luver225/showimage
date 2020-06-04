@@ -30,19 +30,34 @@
       </div>
 
     </nz-header>
-    <nz-content class = "content">
+
+     <nz-content class = "content" *ngIf="contentVis">
         <div nz-row>
             <div nz-col nzSpan="5"></div>
             <div nz-col nzSpan="14">
                 <nz-timeline *ngFor="let item of items" class = "line">
-                    <nz-timeline-item> 
-                      <app-imageinfo [item]="item" (deleteEvent) = "deleteSuccess()"></app-imageinfo>
+                    <nz-timeline-item nzColor = "#364d79"> 
+                      <app-imageinfo [item]="item" (deleteEvent) = "deleteSuccess()" [isManagement] = "isManagementToinfo"></app-imageinfo>
                     </nz-timeline-item>
                 </nz-timeline>
             </div>
             <div nz-col nzSpan="5"></div>
             </div>
     </nz-content>
+
+    <nz-content class = "content" *ngIf="contentVis">
+        <h1 class="h1"> 
+            随机展示区域,请按条件搜索生成相册轨迹
+          </h1>
+    
+        <nz-carousel [nzEffect]="effect">
+            <div nz-carousel-content *ngFor="let src of srcList">
+              <img [src]="src"  >
+            </div>
+          </nz-carousel>
+    </nz-content> 
+
+    
   </nz-layout>
 
 

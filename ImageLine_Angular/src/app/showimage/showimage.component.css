@@ -12,9 +12,6 @@
 
   nz-content {
     background: #fff;
-    min-height: 120px;
-    line-height: 100vh;
-
   }
 
   nz-layout {
@@ -65,4 +62,11 @@
   h3 {
     color: #fff;
     margin-bottom: 0;
+  }
+
+
+  .h1
+  {
+      text-align:center;
+     
   }

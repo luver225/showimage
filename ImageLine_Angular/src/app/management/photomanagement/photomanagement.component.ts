@@ -10,6 +10,10 @@ export class PhotomanagementComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.isManagement = true;
+
   }
+
+  isManagement:any;
 
 }

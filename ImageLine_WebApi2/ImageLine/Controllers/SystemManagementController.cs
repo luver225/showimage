@@ -4,6 +4,7 @@ using ImageLine.Utility;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using static ImageLine.Utility.ImageManager;
@@ -70,14 +71,28 @@ namespace ImageLine.Controllers
                 using (var context = new ServiceContext())
                 {
                     var imageEntity = context.Image.Find(id);
-                    var filePath = imageEntity.ImageOriginalPath;
+
+                    var originalFilePath = imageEntity.ImageOriginalPath;
+                    var simpleFilePath = imageEntity.ImageSimplePath;
+
                     context.Image.Remove(imageEntity);
                     context.SaveChanges();
 
-                    if (File.Exists(filePath))
+                    Task.Factory.StartNew(() =>
                     {
-                        File.Delete(filePath);
-                    }
+                    
+                        if (File.Exists(originalFilePath))
+                        {
+                            File.Delete(originalFilePath);
+                        }
+
+
+                        if (File.Exists(simpleFilePath))
+                        {
+                            File.Delete(simpleFilePath);
+                        }
+                    });
+                  
 
                     return true;
                 }
@@ -164,20 +179,24 @@ namespace ImageLine.Controllers
                 using (var context = new ServiceContext())
                 {
                     var themeEntity = context.Theme.Find(id);
-
                     var name = themeEntity.ThemeName;
                     var directoryPath_Simple = GetAppconfigSimplePath(ImageType.SimpleImage) + name;
                     var directoryPath_Original = GetAppconfigSimplePath(ImageType.OriginalImage) + name;
 
-                    if (Directory.Exists(directoryPath_Simple) && File.GetAttributes(directoryPath_Simple) == FileAttributes.Directory)
+                    Task.Factory.StartNew(() =>
                     {
-                        Directory.Delete(directoryPath_Simple, true);
-                    }
 
-                    if (Directory.Exists(directoryPath_Original) && File.GetAttributes(directoryPath_Original) == FileAttributes.Directory)
-                    {
-                        Directory.Delete(directoryPath_Original, true);
-                    }
+                        if (Directory.Exists(directoryPath_Simple) && File.GetAttributes(directoryPath_Simple) == FileAttributes.Directory)
+                        {
+                            Directory.Delete(directoryPath_Simple, true);
+                        }
+
+                        if (Directory.Exists(directoryPath_Original) && File.GetAttributes(directoryPath_Original) == FileAttributes.Directory)
+                        {
+                            Directory.Delete(directoryPath_Original, true);
+                        }
+                    });
+
                     context.Theme.Remove(themeEntity);
                     context.SaveChanges();
                     return true;
@@ -212,5 +231,9 @@ namespace ImageLine.Controllers
                 return null;
             }
         }
+
+
+
+
     }
 }

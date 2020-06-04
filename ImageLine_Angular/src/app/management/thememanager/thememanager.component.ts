@@ -22,7 +22,7 @@ export class ThememanagerComponent implements OnInit {
   
   items = [];
   inputTheme:string;
-
+  ImageCount:number;
 
   delete(any:any)
   {
@@ -55,9 +55,11 @@ export class ThememanagerComponent implements OnInit {
       {
         return;
       }
+      
       data.forEach(element => {
-       this.items.push({name:element.ThemeName,id:element.ThemeID});
+       this.items.push({name:element.ThemeName,id:element.ThemeID,imageCount:element.ImageCount});
       })
+
     },
     
   );
@@ -65,6 +67,14 @@ export class ThememanagerComponent implements OnInit {
 
   add()
   {
+
+    if(this.inputTheme == null || this.inputTheme == "")
+    {
+      alert("主题未输入！")
+      return;
+    }
+
+
     try {
       this.items.forEach(element => {
         if (element.name == this.inputTheme) {

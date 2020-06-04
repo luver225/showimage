@@ -36,6 +36,7 @@ export class LoginResultDto {
 export class ThemeDto {
   ThemeID:number;
   UserID:number;
+  ImageCount:number;
   ThemeName:string;
 }
     

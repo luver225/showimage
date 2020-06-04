@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Service } from '../shared/service';
 import { Router,  } from '@angular/router';
 import { ThemeDto, ShowImageDto } from '../shared/dto';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { emptyScheduled } from 'rxjs/internal/observable/empty';
 
 
 
@@ -14,6 +15,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class ShowimageComponent implements OnInit {
 
+  @Input() isManagement: boolean;
+
+  isManagementToinfo:boolean;
 
   testSrc:string;
   constructor(private service: Service,
@@ -23,12 +27,14 @@ export class ShowimageComponent implements OnInit {
     // {
     //   this.route.navigate(['/loginfail']);
     // }
-
     }
-
+    
     ngOnInit() {
-     
-      if(localStorage.getItem("IsUser") == "true")
+      this.srcList = [];
+      this.themeList = [];
+      this.contentVis = true;
+
+      if(localStorage.getItem("IsUser") == "true" && !this.isManagement)
       {
         this.isUser = true;
       }
@@ -36,32 +42,63 @@ export class ShowimageComponent implements OnInit {
       {
         this.isUser = false;
       }
+      
 
       for(let i = 1 ; i < 13 ; i++)
       {
         this.monthList.push({name:i+"月",value:i })
       }
 
-      this.getAllTheme();
+      this.service.GetThemes(parseInt(localStorage.getItem("UserId"))).subscribe(
+        (data: ThemeDto[]) => {
+          if (data == null) {
+            return;
+          }
+          data.forEach(element => {
+            this.themeList.push({ name: element.ThemeName, id: element.ThemeID });
+          });
+
+          this.service.Getimages(parseInt(localStorage.getItem("UserId"))).subscribe(
+            (data: number[]) => {
+
+              if (data == null) {
+                return;
+              }
+
+              console.log(data);
+              data.forEach(element => {
+                this.service.DownloadOriginal(element).subscribe(
+                  (data: Blob) => {
+                    var reader = new FileReader();
+                    reader.onload = (event: any) => {
+                      this.srcList.push(event.target.result);
+                    }
+                    reader.readAsDataURL(data);
+                  }
+                )
+              });
+            }
+          )
+        }
+      );
     }
 
-
+  contentVis: boolean
   isUser:boolean;
   themeList = [];
   monthList = [];
-
   items = [];
-  
+  srcList = [];
  
 
-  selectedTheme;
-  selectedMonth;
+  selectedTheme: { id: any; };
+  selectedMonth: { value: any; };
   year;
 
 
   search()
   {
-    var themeID;
+    var themeID: number;
     if(this.selectedTheme == null)
     {
       themeID = 0;
@@ -71,7 +108,7 @@ export class ShowimageComponent implements OnInit {
       themeID = this.selectedTheme.id;
     }
  
-    var year;
+    var year: number;
     if(this.year == null)
     {
       year = 0;
@@ -82,7 +119,7 @@ export class ShowimageComponent implements OnInit {
     }
 
     
-    var month;
+    var month: number;
     if(this.selectedMonth == null)
     {
       month = 0;
@@ -99,9 +136,20 @@ export class ShowimageComponent implements OnInit {
 
         if(data == null)
         {
+          this.items = [];
           return;
         }
         this.items = data;
+
+        if(this.isManagement)
+        {
+          this.isManagementToinfo = true;
+        }
+        else
+        {
+          this.isManagementToinfo = false;
+        }
+       
       },
       (error:any) =>{
         alert("网络发生异常 , 请重试！");
@@ -131,6 +179,5 @@ export class ShowimageComponent implements OnInit {
     this.search();
   }
 
-
-  array = [1, 2, 3, 4];
+  
 }

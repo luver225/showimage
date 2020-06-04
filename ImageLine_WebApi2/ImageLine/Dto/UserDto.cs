@@ -74,6 +74,7 @@ namespace ImageLine.Dto
 
         public string ThemeName { get; set; }
 
+        public int ImageCount { get; set; }
         public static ThemeDto Map(Theme theme)
         {
             if (theme == null)
@@ -86,7 +87,7 @@ namespace ImageLine.Dto
             {
                 ThemeID = theme.ThemeID,
                 ThemeName = theme.ThemeName,
-
+                ImageCount = theme.Images.Count,
             };
 
             return ThemeDto;

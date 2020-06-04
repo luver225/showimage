@@ -16,12 +16,11 @@ export class ImageinfoComponent implements OnInit,OnChanges{
     private renderer2: Renderer2) { }
 
   ngOnInit() {
-
-
+    
   }
   isVisible = false;
 
-  OriginalSrc;
+  OriginalSrc: any;
 
   showModal(): void {
 
@@ -31,7 +30,7 @@ export class ImageinfoComponent implements OnInit,OnChanges{
         reader.onload = (event:any) => {
         this.OriginalSrc = event.target.result;
         this.isVisible = true;
-        this.nzWidth = this.el.nativeElement.querySelector('.img').style.width;
+        this.nzWidth = window.innerWidth;
        }
        reader.readAsDataURL(data);
       },
@@ -53,15 +52,28 @@ export class ImageinfoComponent implements OnInit,OnChanges{
 
   @Input() item: ShowImageDto
 
+  @Input() isManagement: boolean
+
   @Output() deleteEvent = new EventEmitter<string>();
 
-  simpleSrc;
-  title;
-  description;
-  date;
-  nzWidth;
+  simpleSrc: any;
+  title: any;
+  description: any;
+  date: any;
+  nzWidth: any;
+  deleteimageVis:any;
 
   ngOnChanges() {
+    
+    if(this.isManagement)
+    {
+      this.deleteimageVis =true;
+    }
+    else
+    {
+      this.deleteimageVis =false;
+    }
+
     this.date = this.item.Year + "年" + this.item.Month + "月";
     this.title = this.item.ImageOverview;
     this.description = this.item.ImageDescription;

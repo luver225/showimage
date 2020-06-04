@@ -3,6 +3,7 @@ using ImageLine.Models;
 using ImageLine.Utility;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -67,7 +68,8 @@ namespace ImageLine.Controllers
             {
                 using (var context = new ServiceContext())
                 {
-                    var themeListEntity = context.Theme.Where(t => t.UserID == userID).ToList();
+                    var themeListEntity = context.Theme.Where(t => t.UserID == userID)
+                                                 .Include(t => t.Images);
 
                     var themeLsitDto = new List<ThemeDto>();
                     foreach (var theme in themeListEntity)
@@ -219,29 +221,49 @@ namespace ImageLine.Controllers
         }
 
         [HttpGet]
-        [Route("api/ShowImage/test")]
-        public void Test()
+        [Route("api/ShowImage/images/{userID}")]
+        public List<int> Getimages([FromUri] int userID)
         {
             try
             {
-                //TEST
-                var theme = HttpContext.Current.Request["themeName"];
+                using (var context = new ServiceContext())
+                {
 
-                //获得原始图和缩略图要保存的路径
-                var imageOriginalPath = CreatefilePath(theme, ImageType.OriginalImage);
-                var imageSimplePath = CreatefilePath(theme, ImageType.SimpleImage);
+                    var images = from image in context.Image
+                                 where image.UserID == userID
+                                 select image.ImageID;
 
-                var imageInputStream = HttpContext.Current.Request.Files["file"].InputStream;
+                    if (images == null)
+                    {
+                        return null;
+                    }
 
-                //保存原始图
-                SaveFile(imageInputStream, imageOriginalPath);
+                    var imageIdList = images.ToList();
 
-                //保存缩略图
-                CompressImage(imageOriginalPath, imageSimplePath);
+                    if (!imageIdList.Any())
+                    {
+                        return null;
+                    }
+
+                    if (imageIdList.Count < 5)
+                    {
+                        return imageIdList;
+                    }
+                    else
+                    {
+                        return new List<int>
+                        {
+                            imageIdList[imageIdList.Count - 1],
+                            imageIdList[imageIdList.Count - 2],
+                            imageIdList[imageIdList.Count - 3],
+                            imageIdList[imageIdList.Count - 4]
+                        };
+                    }
+                }
             }
             catch (Exception)
             {
-
+                return null;
                 throw;
             }
         }
