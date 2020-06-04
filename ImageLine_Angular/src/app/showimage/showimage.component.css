@@ -52,9 +52,9 @@
 
   [nz-carousel-content] {
     text-align: center;
-    height: 500px;
+    height: 80vh;
     line-height: 500px;
-    background: #364d79;
+    background: #f4f4f4;
     color: #fff;
     overflow: hidden;
   }
@@ -67,6 +67,20 @@
 
   .h1
   {
+      color: #003366;
       text-align:center;
-     
+  }
+
+  .noimage{
+    text-align:center;
+    margin-top: 300px;
+    color: #003366;
+
+  }
+
+  .img4{
+    margin: auto;
+    height: 80vh;
+    width:  80vw;
+   
   }

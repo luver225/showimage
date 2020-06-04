@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UploadFile } from 'ng-zorro-antd';
+import { UploadFile, NzMessageService } from 'ng-zorro-antd';
 import { Service } from 'src/app/shared/service';
 import { ThemeDto } from 'src/app/shared/dto';
 import { Route } from '@angular/compiler/src/core';
@@ -17,7 +17,8 @@ export class UploadphotosComponent implements OnInit {
   constructor(
     private service:Service,
     private route: Router,
-    private i18n: NzI18nService
+    private i18n: NzI18nService,
+    private message: NzMessageService
   ) { 
     this.i18n.setLocale(zh_CN);
   }
@@ -64,17 +65,17 @@ export class UploadphotosComponent implements OnInit {
     upload()
   {
       if (this.selectFile == null) {
-        alert("请选择一张图片！");
+        this.message.warning("请选择一张图片！")
         return;
       }
 
       if (this.selectedTheme == null) {
-        alert("请选择一个主题！");
+        this.message.warning("请选择一个主题！")
         return;
       }
 
       if (this.ImageTime == null) {
-        alert("请选择时间！");
+        this.message.warning("请选择时间！")
         return;
       }
 
@@ -106,7 +107,7 @@ export class UploadphotosComponent implements OnInit {
         }
       },
       (error: any) => {
-        alert("网络发生异常 , 请重试！")
+        this.message.warning("网络发生异常 , 请重试！")
       }
     )
     
@@ -144,7 +145,7 @@ export class UploadphotosComponent implements OnInit {
        });
        if(this.themeList.length == 0)
        {
-         alert("系统中没有主题,请至少创建一个主题");
+        this.message.warning("系统中没有主题,请至少创建一个主题！")
        }
      }
    );

@@ -2,10 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Service } from '../shared/service';
 import { Router,  } from '@angular/router';
 import { ThemeDto, ShowImageDto } from '../shared/dto';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { emptyScheduled } from 'rxjs/internal/observable/empty';
-
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 
 @Component({
@@ -21,18 +18,20 @@ export class ShowimageComponent implements OnInit {
 
   testSrc:string;
   constructor(private service: Service,
+    private message: NzMessageService,
     private route: Router,) { 
 
-    // if(!service.isLoginSuccess)
-    // {
-    //   this.route.navigate(['/loginfail']);
-    // }
+    if(localStorage.getItem("IsLoginSuccess") != "true")
+    {
+      this.route.navigate(['/loginfail']);
+    }
     }
     
     ngOnInit() {
       this.srcList = [];
       this.themeList = [];
-      this.contentVis = true;
+      this.carouselVis = true;
+      this.hasimage = false;
 
       if(localStorage.getItem("IsUser") == "true" && !this.isManagement)
       {
@@ -58,12 +57,21 @@ export class ShowimageComponent implements OnInit {
             this.themeList.push({ name: element.ThemeName, id: element.ThemeID });
           });
 
+          //4 image
           this.service.Getimages(parseInt(localStorage.getItem("UserId"))).subscribe(
             (data: number[]) => {
 
               if (data == null) {
                 return;
               }
+
+              if(data.length == 0)
+              {
+                this.hasimage = false;
+                return;
+              }
+
+              this.hasimage = true;
 
               console.log(data);
               data.forEach(element => {
@@ -83,7 +91,7 @@ export class ShowimageComponent implements OnInit {
       );
     }
 
-  contentVis: boolean
+ carouselVis: boolean
   isUser:boolean;
   themeList = [];
   monthList = [];
@@ -94,10 +102,18 @@ export class ShowimageComponent implements OnInit {
   selectedTheme: { id: any; };
   selectedMonth: { value: any; };
   year;
-
+  hasimage;
 
   search()
   {
+
+    if(this.selectedTheme == null && this.year == null && this.selectedMonth == null)
+    {
+      this.message.info("至少选一个条件！");
+      return;
+    }
+  
+
     var themeID: number;
     if(this.selectedTheme == null)
     {
@@ -118,7 +134,6 @@ export class ShowimageComponent implements OnInit {
        year = this.year.getFullYear();
     }
 
-    
     var month: number;
     if(this.selectedMonth == null)
     {
@@ -130,16 +145,19 @@ export class ShowimageComponent implements OnInit {
     }
   
     var UserId = parseInt(localStorage.getItem("UserId"));
-
     this.service.GetImageInfos(themeID,year,month,UserId).subscribe(
       (data:ShowImageDto[]) =>{
 
-        if(data == null)
+        if(data == null || data.length == 0)
         {
           this.items = [];
+          this.message.info("无搜索结果！");
           return;
         }
+
+
         this.items = data;
+        this.carouselVis = false;
 
         if(this.isManagement)
         {
@@ -152,11 +170,10 @@ export class ShowimageComponent implements OnInit {
        
       },
       (error:any) =>{
-        alert("网络发生异常 , 请重试！");
+        this.message.error("网络发生异常 , 请重试！");
       }
     )
   }
-
 
   getAllTheme()
   {

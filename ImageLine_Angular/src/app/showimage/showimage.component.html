@@ -30,8 +30,7 @@
       </div>
 
     </nz-header>
-
-     <nz-content class = "content" *ngIf="contentVis">
+     <nz-content class = "content" *ngIf="!carouselVis">
         <div nz-row>
             <div nz-col nzSpan="5"></div>
             <div nz-col nzSpan="14">
@@ -45,19 +44,27 @@
             </div>
     </nz-content>
 
-    <nz-content class = "content" *ngIf="contentVis">
+    <div *ngIf="isUser" > 
+      <nz-content class = "content" *ngIf="carouselVis">
         <h1 class="h1"> 
             随机展示区域,请按条件搜索生成相册轨迹
           </h1>
-    
-        <nz-carousel [nzEffect]="effect">
+
+
+
+        <nz-carousel nzAutoPlay *ngIf="hasimage">
             <div nz-carousel-content *ngFor="let src of srcList">
-              <img [src]="src"  >
+
+              <img [src]="src" class="img4" >
             </div>
           </nz-carousel>
-    </nz-content> 
+       
+          <h1 class="noimage" *ngIf="!hasimage" > 
+           目前系统中无图片,请去系统设置中上传图片！
+          </h1>
 
-    
+    </nz-content> 
+    </div>
   </nz-layout>
 
 

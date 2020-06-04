@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Service } from 'src/app/shared/service';
 import { Router } from '@angular/router';
 import { UserDto, UserChangeDto, UserInfoDto } from 'src/app/shared/dto';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-changepassword',
@@ -17,7 +18,15 @@ export class ChangepasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: Router,
-    private service: Service) {
+    private service: Service,
+    private message: NzMessageService,) {
+
+      if(localStorage.getItem("IsLoginSuccess") != "true")
+      {
+        this.route.navigate(['/loginfail']);
+      }
+
+      
     this.form = fb.group({
       userName: [null,],
       password: [null,],
@@ -65,7 +74,7 @@ export class ChangepasswordComponent implements OnInit {
         }
       },
       (error: any) => {
-        alert("网络发生异常 , 请重试！")
+        this.message.error("网络发生异常 , 请重试！");
       }
     )
   }

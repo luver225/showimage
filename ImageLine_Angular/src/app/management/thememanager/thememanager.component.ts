@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from 'src/app/shared/service';
 import { ThemeDto } from 'src/app/shared/dto';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-thememanager',
@@ -10,7 +11,8 @@ import { ThemeDto } from 'src/app/shared/dto';
 export class ThememanagerComponent implements OnInit {
 
   constructor(
-    private service: Service
+    private service: Service,
+    private message: NzMessageService
   ) { 
 
     
@@ -35,12 +37,11 @@ export class ThememanagerComponent implements OnInit {
         }
         else
         {
-          alert("删除失败 , 请重试！")
+          this.message.error("删除失败 , 请重试！");
         }
       },
       (error: any) => {
-
-        alert("网络发生异常 , 请重试！")
+        this.message.error("网络发生异常 , 请重试！");
       }
     )
     
@@ -70,7 +71,7 @@ export class ThememanagerComponent implements OnInit {
 
     if(this.inputTheme == null || this.inputTheme == "")
     {
-      alert("主题未输入！")
+      this.message.error("主题未输入！");
       return;
     }
 
@@ -78,7 +79,7 @@ export class ThememanagerComponent implements OnInit {
     try {
       this.items.forEach(element => {
         if (element.name == this.inputTheme) {
-          alert("主题名称重复，请重输！")
+          this.message.error("主题名称重复，请重输！");
           throw new Error("抛出异常跳出")
         }
       });
@@ -99,7 +100,7 @@ export class ThememanagerComponent implements OnInit {
 
       (error: any) => {
         console.log(error);
-        alert("网络发生异常 , 请重试！")
+        this.message.error("网络发生异常 , 请重试！");
       }
 
     ) 

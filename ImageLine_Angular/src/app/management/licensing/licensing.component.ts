@@ -3,6 +3,7 @@ import { Service } from 'src/app/shared/service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LicenseChangeDto, UserInfoDto } from 'src/app/shared/dto';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-licensing',
@@ -33,7 +34,7 @@ export class LicensingComponent implements OnInit {
         }
       },
       (error: any) => {
-        alert("网络发生异常 , 请刷新！")
+        this.message.error("网络发生异常 , 请重试！");
       }
     )
   }
@@ -47,7 +48,8 @@ export class LicensingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: Router,
-    private service: Service) {
+    private service: Service,
+    private message: NzMessageService,) {
     this.form = fb.group({
       license: [null,],
       confirmlicense: [null,],
@@ -84,7 +86,7 @@ export class LicensingComponent implements OnInit {
         }
       },
       (error: any) => {
-        alert("网络发生异常 , 请重试！")
+        this.message.error("网络发生异常 , 请重试！");
       }
     )
   }

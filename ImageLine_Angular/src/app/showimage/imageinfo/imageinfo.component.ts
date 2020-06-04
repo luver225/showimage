@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angu
 import { ShowImageDto } from 'src/app/shared/dto';
 import { Service } from 'src/app/shared/service';
 import {ElementRef,Renderer2} from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-imageinfo',
@@ -13,7 +14,8 @@ export class ImageinfoComponent implements OnInit,OnChanges{
   constructor(
     private service: Service,
     private el:ElementRef,
-    private renderer2: Renderer2) { }
+    private renderer2: Renderer2,
+    private message: NzMessageService,) { }
 
   ngOnInit() {
     
@@ -35,7 +37,7 @@ export class ImageinfoComponent implements OnInit,OnChanges{
        reader.readAsDataURL(data);
       },
       (error:any) =>{
-        alert("网络发生异常 , 请重试！");
+        this.message.error("网络发生异常 , 请重试！");
       }
     )
   }
