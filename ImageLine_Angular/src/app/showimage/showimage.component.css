@@ -1,86 +1,74 @@
+nz-header,
+nz-footer {
+  background: #003366;
+  color: #fff;
+}
 
-  nz-header,
-  nz-footer {
-    background: #003366;
-    color: #fff;
-  }
-
-  nz-footer {
-    line-height: 1.5;
-  }
-
-
-  nz-content {
-    background: #fff;
-  }
-
-  nz-layout {
-    margin-bottom: 48px;
-    background: #fff;
-  }
-
-  .content{
-    margin-top: 50px;
-  }
-
-  nz-select {
-    width: 100px;
-  }
+nz-footer {
+  line-height: 1.5;
+}
 
 
-  .theme{
-    width: 100px;
-  }
+nz-content {
+  background: #fff;
+}
 
-  .year{
-    width: 100px;
-  }
+nz-layout {
+  margin-bottom: 48px;
+  background: #fff;
+}
 
-  .ant-btn-primary {
-    color: #fff;
-    background-color:#003366;
-    border-color:#fff;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-  }
+.content {
+  margin-top: 50px;
+}
 
-  i{
-    color:#fff;
-  }
+nz-select {
+  width: 100px;
+}
 
- 
+.theme {
+  width: 100px;
+}
 
-  [nz-carousel-content] {
-    text-align: center;
-    height: 80vh;
-    line-height: 500px;
-    background: #f4f4f4;
-    color: #fff;
-    overflow: hidden;
-  }
+.year {
+  width: 100px;
+}
 
-  h3 {
-    color: #fff;
-    margin-bottom: 0;
-  }
+.ant-btn-primary {
+  color: #fff;
+  background-color: #003366;
+  border-color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+}
+
+.settingicon {
+  color: #fff;
+}
+
+[nz-carousel-content] {
+  text-align: center;
+  height: 80vh;
+  line-height: 500px;
+  background: #f4f4f4;
+  color: #fff;
+  overflow: hidden;
+}
 
 
-  .h1
-  {
-      color: #003366;
-      text-align:center;
-  }
+.carouselTitle {
+  color: #003366;
+  text-align: center;
+}
 
-  .noimage{
-    text-align:center;
-    margin-top: 300px;
-    color: #003366;
+.noImage {
+  text-align: center;
+  margin-top: 300px;
+  color: #003366;
+}
 
-  }
-
-  .img4{
-    margin: auto;
-    height: 80vh;
-    width:  80vw;
-   
-  }
+.imgCarousel {
+  margin: auto;
+  height: 80vh;
+  width: 80vw;
+}

@@ -9,22 +9,21 @@ import { Router } from '@angular/router';
 })
 export class ManagementComponent implements OnInit {
 
-  constructor(public service:Service,
-    public route:Router) { 
+  constructor(public service: Service,
+    public route: Router) {
 
-    // if(!service.isLoginSuccess)
-    // {
-    //   this.route.navigate(['/loginfail']);
-    // }
+    if (localStorage.getItem("IsLoginSuccess") != "true") {
+      this.route.navigate(['/loginfail']);
+    }
   }
 
-  items =[
-    {name:"<<返回首页",path:"/showimage"},
-    {name:"上传照片",path:"/management/uploadphotos"},
-    {name:"主题管理",path:"/management/thememanager"},
-    {name:"相册管理",path:"/management/photomanagement"},
-    {name:"修改密码",path:"/management/changepassword"},
-    {name:"授权许可",path:"/management/licensing"},
+  managementList = [
+    { name: "<<返回首页", path: "/showimage" },
+    { name: "上传照片", path: "/management/uploadphotos" },
+    { name: "主题管理", path: "/management/thememanager" },
+    { name: "相册管理", path: "/management/photomanagement" },
+    { name: "修改密码", path: "/management/changepassword" },
+    { name: "授权许可", path: "/management/licensing" },
   ]
 
   ngOnInit() {

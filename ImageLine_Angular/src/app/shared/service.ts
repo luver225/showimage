@@ -16,8 +16,6 @@ export class Service {
 
   baseUrl:string = "http://localhost:25169/api";
 
-
-  //Login
   UserLogin(userDto:UserDto)
   {
     var url = this.baseUrl+ "/Login/user";
@@ -36,7 +34,6 @@ export class Service {
     return this.http.post(url,userDto);
   }
 
-  //ShowImage
   DownloadOriginal(id:number)
   {
     var url = this.baseUrl+ "/ShowImage/image/Original/" + id;
@@ -52,7 +49,7 @@ export class Service {
   GetThemes(id:number)
   {
     var url = this.baseUrl+ "/ShowImage/theme/" + id;
-    return this.http.get(url);
+    return this.http.get<ThemeDto[]>(url);
   }
 
   GetImageInfos(themeID:number,year:number,month:number,userID:number)
@@ -62,7 +59,6 @@ export class Service {
     return this.http.get(url,this.httpOptions);
   }
 
-  //SystemManagement
   Upload(fromData:FormData)
   {
     var url = this.baseUrl+ "/SystemManagement/image/";
@@ -105,10 +101,9 @@ export class Service {
     return this.http.get(url);
   }
 
-  Getimages(id:number)
+  GetCarouselImages(id:number)
   {
-    var url = this.baseUrl+ "/ShowImage/images/" + id;
+    var url = this.baseUrl+ "/ShowImage/Carouseimages/" + id;
     return this.http.get(url);
   }
-
 }

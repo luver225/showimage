@@ -11,20 +11,18 @@
   width: 100%;
 }
 
-._login
-{
+._login {
   margin-top: 100px;
 }
 
-  .failed
-  {
-    color: brown;
-  }
+.loginfail {
+  color: brown;
+}
 
-  .ant-btn-primary {
-    color: #fff;
-    background-color:#003366;
-    border-color:#003366;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-  }
+.ant-btn-primary {
+  color: #fff;
+  background-color: #003366;
+  border-color: #003366;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+}

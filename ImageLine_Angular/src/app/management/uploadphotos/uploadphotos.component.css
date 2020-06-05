@@ -1,46 +1,45 @@
 .login-form {
-    max-width: 300px;
-  }
+  max-width: 300px;
+}
 
-  .login-form-margin {
-    margin-bottom: 16px;
-  }
+.login-form-margin {
+  margin-bottom: 16px;
+}
 
-  .login-form-forgot {
-    float: right;
-  }
+.login-form-forgot {
+  float: right;
+}
 
-  .login-form-button {
-    width: 50%;
-  }
+.login-form-button {
+  width: 50%;
+}
 
-  ._login
-  {
-    margin-top: 100px;
-  }
+._login {
+  margin-top: 100px;
+}
 
-  .failed
-  {
-    color: brown;
-  }
+.failed {
+  color: brown;
+}
 
+:host ::ng-deep .avatar-uploader>.ant-upload {
+  width: 128px;
+  height: 128px;
+}
 
-  :host ::ng-deep .avatar-uploader > .ant-upload {
-    width: 128px;
-    height: 128px;
-  }
+.img {
+  width: 200px;
+  height: 200px;
+}
 
-  .img{
-    width: 200px;
-    height: 200px;
-  }
-  
+.ant-btn-primary {
+  color: #fff;
+  background-color: #003366;
+  border-color: #003366;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+}
 
+.file{
 
-  .ant-btn-primary {
-    color: #fff;
-    background-color:#003366;
-    border-color:#003366;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
-  }
+}

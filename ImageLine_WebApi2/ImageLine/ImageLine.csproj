@@ -121,6 +121,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ShowImageController.cs" />
     <Compile Include="Controllers\SystemManagementController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

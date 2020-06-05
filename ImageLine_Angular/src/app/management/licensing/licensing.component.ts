@@ -12,23 +12,36 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class LicensingComponent implements OnInit {
 
+  form: FormGroup;
+  needVisibility: boolean;
+  loginResult: string;
+  isLicense: boolean;
+  licenseValue: string;
+  isLoading:boolean;
 
+  constructor(
+    private fb: FormBuilder,
+    private route: Router,
+    private service: Service,
+    private message: NzMessageService, ) {
+
+    this.form = fb.group({
+      license: [null,],
+      confirmlicense: [null,],
+    });
+  }
 
   ngOnInit() {
-
     let id = parseInt(localStorage.getItem("UserId"));
     this.service.GetUserInfo(id).subscribe(
-      (data:UserInfoDto)=>{
-        if(data == null || data == undefined)
-        {
+      (data: UserInfoDto) => {
+        if (data == null || data == undefined) {
           return;
         }
-        if(data.License == null)
-        {
+        if (data.License == null) {
           this.isLicense = false;
         }
-        else
-        {
+        else {
           this.isLicense = true;
           this.licenseValue = data.License;
         }
@@ -39,32 +52,27 @@ export class LicensingComponent implements OnInit {
     )
   }
 
-  form: FormGroup;
-  needVisibility: boolean;
-  loginResult:string;
-  isLicense:boolean;
-  licenseValue:string;
 
-  constructor(
-    private fb: FormBuilder,
-    private route: Router,
-    private service: Service,
-    private message: NzMessageService,) {
-    this.form = fb.group({
-      license: [null,],
-      confirmlicense: [null,],
-    });
-  }
+  changeLicense() {
 
-  login() {
 
-    if(this.form.controls.license.value != this.form.controls.confirmlicense.value)
-    {
+    if(this.form.controls.license.value == null 
+      || this.form.controls.confirmlicense.value == null
+      || this.form.controls.license.value == ""
+      || this.form.controls.confirmconfirmlicensepassword.value == "")
+      {
+        this.message.warning("请输入许可码！");
+        return;
+      }
+
+
+    if (this.form.controls.license.value != this.form.controls.confirmlicense.value) {
       this.needVisibility = true;
       this.loginResult = "两次许可码不相同,请重新输入";
       return;
     }
 
+    this.isLoading = true;
 
     let licenseChangeDto = new LicenseChangeDto();
     licenseChangeDto.UserID = parseInt(localStorage.getItem("UserId"));
@@ -72,13 +80,11 @@ export class LicensingComponent implements OnInit {
 
     this.service.LicenseChange(licenseChangeDto).subscribe(
       (data) => {
+        this.isLoading = false;
         if (data) {
-      
           this.needVisibility = true;
           this.loginResult = "授权成功";
           this.licenseValue = this.form.controls.license.value;
-
-          
         }
         else {
           this.needVisibility = true;
@@ -86,10 +92,10 @@ export class LicensingComponent implements OnInit {
         }
       },
       (error: any) => {
+        this.isLoading = false;
         this.message.error("网络发生异常 , 请重试！");
       }
     )
   }
-
-
+  
 }

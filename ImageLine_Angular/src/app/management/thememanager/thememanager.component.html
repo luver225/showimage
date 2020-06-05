@@ -1,48 +1,37 @@
-
-
- <h1 class="h1">请注意！删除主题会删除该主题下的所有归属图片!</h1>
-
-
+<h1 class="h1">请注意！删除主题会删除该主题下的所有归属图片!</h1>
 
 <div nz-row class="theme">
-    <div nz-row >
+    <div nz-row>
         <div nz-col nzSpan="10"></div>
         <div nz-col nzSpan="8">
-
-            <div nz-row >
-                <div nz-col nzSpan="8">     
-                    <input nz-input type="text" [(ngModel)]="inputTheme" >
-                </div>   
+            <div nz-row>
+                <div nz-col nzSpan="8">
+                    <input nz-input type="text" [(ngModel)]="inputTheme">
+                </div>
                 <div nz-col nzSpan="2">
                 </div>
-                    <div nz-col nzSpan="5">
-                        <button nz-button  [nzType]="'primary'" (click) = "add()"> 添加</button>
-                    </div>
+                <div nz-col nzSpan="5">
+                    <button nz-button [nzType]="'primary'" (click)="add()"> 添加</button>
+                </div>
             </div>
         </div>
-    </div> 
-<br>
-<br>
-<br>
-        
-    <div nz-row >
-            <div nz-col nzSpan="11"></div>
-          
-            <div nz-col nzSpan="8">
-            <nz-timeline *ngFor="let item of items" >
-                    <nz-timeline-item> 
-                            <nz-form-item>
-                                    <label>{{item.name}} ({{item.imageCount}}张照片)</label>
-                                    <a (click) = "delete(item)"> 删除</a>
-                                </nz-form-item>
-                    </nz-timeline-item>
-                </nz-timeline>
-            </div>
-
-                   
-            
     </div>
-   
 
+    <br>
+    <br>
+    <br>
+
+    <div nz-row>
+        <div nz-col nzSpan="11"></div>
+        <div nz-col nzSpan="8">
+            <nz-timeline *ngFor="let theme of themes">
+                <nz-timeline-item>
+                    <nz-form-item>
+                        <label>{{theme.name}} ({{theme.imageCount}}张照片)</label>
+                        <a (click)="delete(theme)"> 删除</a>
+                    </nz-form-item>
+                </nz-timeline-item>
+            </nz-timeline>
+        </div>
+    </div>
 </div>
-    

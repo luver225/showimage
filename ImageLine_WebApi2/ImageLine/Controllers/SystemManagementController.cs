@@ -72,6 +72,11 @@ namespace ImageLine.Controllers
                 {
                     var imageEntity = context.Image.Find(id);
 
+                    if (imageEntity == null)
+                    {
+                        return true;
+                    }
+
                     var originalFilePath = imageEntity.ImageOriginalPath;
                     var simpleFilePath = imageEntity.ImageSimplePath;
 
@@ -179,6 +184,12 @@ namespace ImageLine.Controllers
                 using (var context = new ServiceContext())
                 {
                     var themeEntity = context.Theme.Find(id);
+
+                    if (themeEntity == null)
+                    {
+                        return true;
+                    }
+
                     var name = themeEntity.ThemeName;
                     var directoryPath_Simple = GetAppconfigSimplePath(ImageType.SimpleImage) + name;
                     var directoryPath_Original = GetAppconfigSimplePath(ImageType.OriginalImage) + name;

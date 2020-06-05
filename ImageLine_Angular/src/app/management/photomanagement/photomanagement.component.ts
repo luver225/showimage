@@ -7,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotomanagementComponent implements OnInit {
 
+  isManagement:boolean;
+
   constructor() { }
 
   ngOnInit() {
     this.isManagement = true;
-
   }
-
-  isManagement:any;
 
 }

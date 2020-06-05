@@ -221,8 +221,8 @@ namespace ImageLine.Controllers
         }
 
         [HttpGet]
-        [Route("api/ShowImage/images/{userID}")]
-        public List<int> Getimages([FromUri] int userID)
+        [Route("api/ShowImage/Carouseimages/{userID}")]
+        public List<int> GetCarouselImages([FromUri] int userID)
         {
             try
             {

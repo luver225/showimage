@@ -11,22 +11,22 @@ import { NzMessageService } from 'ng-zorro-antd';
   styleUrls: ['./changepassword.component.css']
 })
 export class ChangepasswordComponent implements OnInit {
+
   form: FormGroup;
   needVisibility: boolean;
-  loginResult:string;
+  loginResult: string;
+  isLoading:boolean;
 
   constructor(
     private fb: FormBuilder,
     private route: Router,
     private service: Service,
-    private message: NzMessageService,) {
+    private message: NzMessageService, ) {
 
-      if(localStorage.getItem("IsLoginSuccess") != "true")
-      {
-        this.route.navigate(['/loginfail']);
-      }
+    if (localStorage.getItem("IsLoginSuccess") != "true") {
+      this.route.navigate(['/loginfail']);
+    }
 
-      
     this.form = fb.group({
       userName: [null,],
       password: [null,],
@@ -35,38 +35,49 @@ export class ChangepasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let id  = parseInt(localStorage.getItem("UserId"));
+    let id = parseInt(localStorage.getItem("UserId"));
     this.service.GetUserInfo(id).subscribe(
-      (data:UserInfoDto) => {
-        if(data == null || data == undefined)
-        {
+      (data: UserInfoDto) => {
+        if (data == null || data == undefined) {
           return;
         }
         this.form.controls.userName.setValue(data.Name);
-      } 
+      }
     )
   }
 
-  login() {
 
-    if(this.form.controls.password.value != this.form.controls.confirmpassword.value)
-    {
+  changePassword() {
+
+
+    if(this.form.controls.password.value == null 
+      || this.form.controls.confirmpassword.value == null
+      || this.form.controls.password.value == ""
+      || this.form.controls.confirmpassword.value == "")
+      {
+        this.message.warning("请输入密码！");
+        return;
+      }
+      
+
+    if (this.form.controls.password.value != this.form.controls.confirmpassword.value) {
       this.needVisibility = true;
       this.loginResult = "两次密码不相同,请重新输入";
       return;
     }
-  
-    //todo server
+
+    this.isLoading = true;
+
     let userDto = new UserChangeDto();
     userDto.UserID = parseInt(localStorage.getItem("UserId"));
     userDto.PassWord = this.form.controls.password.value;
 
     this.service.UserChange(userDto).subscribe(
       (data) => {
+        this.isLoading = false;
         if (data) {
           this.needVisibility = true;
           this.loginResult = "修改成功";
-
         }
         else {
           this.needVisibility = true;
@@ -74,10 +85,10 @@ export class ChangepasswordComponent implements OnInit {
         }
       },
       (error: any) => {
+        this.isLoading = false;
         this.message.error("网络发生异常 , 请重试！");
       }
     )
   }
-
 
 }

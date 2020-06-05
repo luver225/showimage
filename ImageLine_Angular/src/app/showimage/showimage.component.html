@@ -1,72 +1,63 @@
 <nz-layout>
-    <nz-header>
-      <div nz-row>
-        <div nz-col nzSpan="3">
-          主题：
-          <nz-select class ="theme"  [(ngModel)]="selectedTheme"  nzAllowClear name = "selectedTheme">
-              <nz-option *ngFor="let option of themeList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
-            </nz-select>
-        </div>
-       <div nz-col nzSpan="3">
-          年：
-      <nz-year-picker  class ="year" [(ngModel)]="year" name = "year"  nzPlaceHolder=""></nz-year-picker>
-        </div>
-        <div nz-col nzSpan="3">
-          月：
-          <nz-select [(ngModel)]="selectedMonth"  name = "selectedMonth"  nzAllowClear >
-            <nz-option *ngFor="let option of monthList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
-          </nz-select>
-        </div>
-        <div nz-col nzSpan="2">
-          <button nz-button  [nzType]="'primary'"  (click) = "search()"> 搜索</button> 
-        </div>
-        <div nz-col nzSpan="11"> </div>
-        <div nz-col nzSpan="2" *ngIf="isUser"> 
-          系统设置
-        <a routerLink="/management" routerLinkActive="active"> 
-          <i nz-icon nzType="setting" nzTheme="outline"  class = "i" ></i>
-        </a>
-        </div>
+  <nz-header>
+    <div nz-row>
+      <div nz-col nzSpan="3">
+        主题：
+        <nz-select class="theme" [(ngModel)]="selectedTheme" nzAllowClear name="selectedTheme">
+          <nz-option *ngFor="let option of themeList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
+        </nz-select>
       </div>
-
-    </nz-header>
-     <nz-content class = "content" *ngIf="!carouselVis">
-        <div nz-row>
-            <div nz-col nzSpan="5"></div>
-            <div nz-col nzSpan="14">
-                <nz-timeline *ngFor="let item of items" class = "line">
-                    <nz-timeline-item nzColor = "#364d79"> 
-                      <app-imageinfo [item]="item" (deleteEvent) = "deleteSuccess()" [isManagement] = "isManagementToinfo"></app-imageinfo>
-                    </nz-timeline-item>
-                </nz-timeline>
-            </div>
-            <div nz-col nzSpan="5"></div>
-            </div>
-    </nz-content>
-
-    <div *ngIf="isUser" > 
-      <nz-content class = "content" *ngIf="carouselVis">
-        <h1 class="h1"> 
-            随机展示区域,请按条件搜索生成相册轨迹
-          </h1>
-
-
-
-        <nz-carousel nzAutoPlay *ngIf="hasimage">
-            <div nz-carousel-content *ngFor="let src of srcList">
-
-              <img [src]="src" class="img4" >
-            </div>
-          </nz-carousel>
-       
-          <h1 class="noimage" *ngIf="!hasimage" > 
-           目前系统中无图片,请去系统设置中上传图片！
-          </h1>
-
-    </nz-content> 
+      <div nz-col nzSpan="3">
+        年：
+        <nz-year-picker class="year" [(ngModel)]="year" name="year" nzPlaceHolder=""></nz-year-picker>
+      </div>
+      <div nz-col nzSpan="3">
+        月：
+        <nz-select [(ngModel)]="selectedMonth" name="selectedMonth" nzAllowClear>
+          <nz-option *ngFor="let option of monthList" [nzValue]="option" [nzLabel]="option.name"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col nzSpan="2">
+        <button nz-button [nzType]="'primary'" (click)="search()"> 搜索</button>
+      </div>
+      <div nz-col nzSpan="11"> </div>
+      <div nz-col nzSpan="2" *ngIf="isUser">
+        系统设置
+        <a routerLink="/management" routerLinkActive="active">
+          <i nz-icon nzType="setting" nzTheme="outline" class="settingicon"></i>
+        </a>
+      </div>
     </div>
-  </nz-layout>
 
+  </nz-header>
+  <nz-content class="content" *ngIf="!carouselVis">
+    <div nz-row>
+      <div nz-col nzSpan="5"></div>
+      <div nz-col nzSpan="14">
+        <nz-timeline *ngFor="let image of imageLines" >
+          <nz-timeline-item nzColor="#364d79">
+            <app-imageinfo [item]="image" (deleteEvent)="deleteSuccess()" [isManagement]="isManagementToinfo">
+            </app-imageinfo>
+          </nz-timeline-item>
+        </nz-timeline>
+      </div>
+      <div nz-col nzSpan="5"></div>
+    </div>
+  </nz-content>
 
- 
-
+  <div *ngIf="isUser">
+    <nz-content class="content" *ngIf="carouselVis">
+      <h1 class="carouselTitle">
+        随机展示区域,请按条件搜索生成相册轨迹
+      </h1>
+      <nz-carousel nzAutoPlay *ngIf="hasimage">
+        <div nz-carousel-content *ngFor="let imgCarouse of imgCarouselList">
+          <img [src]="imgCarouse" class="imgCarousel">
+        </div>
+      </nz-carousel>
+      <h1 class="noImage" *ngIf="!hasimage">
+        目前系统中无图片,请去系统设置中上传图片！
+      </h1>
+    </nz-content>
+  </div>
+</nz-layout>

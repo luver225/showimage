@@ -11,21 +11,32 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class ImageinfoComponent implements OnInit,OnChanges{
 
+  @Input() item: ShowImageDto
+
+  @Input() isManagement: boolean
+
+  @Output() deleteEvent = new EventEmitter<string>();
+
+  simpleSrc: string;
+  title: string;
+  description: string;
+  date: string;
+  nzWidth: any;
+  deleteimageVis:boolean;
+  isVisible = false;
+  OriginalSrc: string;
+
   constructor(
     private service: Service,
     private el:ElementRef,
     private renderer2: Renderer2,
-    private message: NzMessageService,) { }
+    private message: NzMessageService,) { 
+    }
 
   ngOnInit() {
-    
   }
-  isVisible = false;
-
-  OriginalSrc: any;
-
+ 
   showModal(): void {
-
     this.service.DownloadOriginal(this.item.ImageID).subscribe(
       (data:Blob) =>{
         var reader = new FileReader();
@@ -51,19 +62,6 @@ export class ImageinfoComponent implements OnInit,OnChanges{
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-
-  @Input() item: ShowImageDto
-
-  @Input() isManagement: boolean
-
-  @Output() deleteEvent = new EventEmitter<string>();
-
-  simpleSrc: any;
-  title: any;
-  description: any;
-  date: any;
-  nzWidth: any;
-  deleteimageVis:any;
 
   ngOnChanges() {
     
@@ -109,10 +107,4 @@ export class ImageinfoComponent implements OnInit,OnChanges{
       }
     )
   }
-
-
-
-
-
-
 }

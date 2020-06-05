@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Service } from 'src/app/shared/service';
 import { Router } from '@angular/router';
 import { LienceDto, LoginResultDto } from 'src/app/shared/dto';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-vistor',
@@ -13,23 +14,33 @@ export class VistorComponent implements OnInit {
 
   form: FormGroup;
   needVisibility: boolean;
-  loginResult:string;
+  loginResult: string;
 
   constructor(private fb: FormBuilder,
     private service: Service,
-    private route: Router,) {
+    private route: Router, 
+    private message: NzMessageService,) {
+
     this.form = fb.group({
       userName: [null,],
       password: [null,],
     });
-
   }
 
   ngOnInit(): void {
   }
 
-  vistor()
- {
+  vistor() {
+
+    if(this.form.controls.userName.value == null 
+      || this.form.controls.password.value == null
+      || this.form.controls.userName.value == ""
+      || this.form.controls.password.value == "")
+      {
+        this.message.warning("请输入账号密码！");
+        return;
+      }
+
     this.needVisibility = true;
     this.loginResult = "登陆中...";
 
@@ -40,10 +51,10 @@ export class VistorComponent implements OnInit {
     this.service.VisitorLogin(userLoginDto).subscribe(
       (data: LoginResultDto) => {
         if (data.IsSuccess) {
-          localStorage.setItem("Token",data.Token);
-          localStorage.setItem("IsLoginSuccess","true");
-          localStorage.setItem("UserId",data.UserID.toString());
-          localStorage.setItem("IsUser","false");
+          localStorage.setItem("Token", data.Token);
+          localStorage.setItem("IsLoginSuccess", "true");
+          localStorage.setItem("UserId", data.UserID.toString());
+          localStorage.setItem("IsUser", "false");
           this.needVisibility = false;
           this.route.navigate(['/showimage']);
         }
@@ -53,13 +64,8 @@ export class VistorComponent implements OnInit {
         }
       },
       (error: any) => {
-        alert("网络发生异常 , 请重试！")
+        this.message.error("网络发生异常 , 请重试！");
       }
     )
   }
-
-
-
-
-
 }
