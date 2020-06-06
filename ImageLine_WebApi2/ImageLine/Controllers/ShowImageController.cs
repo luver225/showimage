@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
 using static ImageLine.Utility.ImageManager;
+using System.Threading.Tasks;
 
 namespace ImageLine.Controllers
 {
@@ -18,16 +19,16 @@ namespace ImageLine.Controllers
     {
         [HttpGet]
         [Route("api/ShowImage/image/Original/{id}")]
-        public HttpResponseMessage DownloadOriginal([FromUri] int id)
+        public async Task<HttpResponseMessage> DownloadOriginalAsync([FromUri] int id)
         {
             try
             {
                 using (var context = new ServiceContext())
                 {
                     var filepath = context.Image.Find(id).ImageOriginalPath;
-                    var fileStream = ImageManager.LoadFile(filepath);
+                    byte[] fileByte = await LoadFileAsync(filepath);
                     HttpResponseMessage httpResponse = new HttpResponseMessage(HttpStatusCode.OK);
-                    httpResponse.Content = new StreamContent(fileStream);
+                    httpResponse.Content = new ByteArrayContent(fileByte);
                     httpResponse.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
                     return httpResponse;
                 }
@@ -40,16 +41,16 @@ namespace ImageLine.Controllers
 
         [HttpGet]
         [Route("api/ShowImage/image/Simple/{id}")]
-        public HttpResponseMessage DownloadSimple([FromUri] int id)
+        public async Task<HttpResponseMessage> DownloadSimpleAsync([FromUri] int id)
         {
             try
             {
                 using (var context = new ServiceContext())
                 {
                     var filepath = context.Image.Find(id).ImageSimplePath;
-                    var fileStream = ImageManager.LoadFile(filepath);
+                    var fileStream = await LoadFileAsync(filepath);
                     HttpResponseMessage httpResponse = new HttpResponseMessage(HttpStatusCode.OK);
-                    httpResponse.Content = new StreamContent(fileStream);
+                    httpResponse.Content = new ByteArrayContent(fileStream);
                     httpResponse.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
                     return httpResponse;
                 }

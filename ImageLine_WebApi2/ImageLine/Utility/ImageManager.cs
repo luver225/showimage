@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace ImageLine.Utility
 {
@@ -38,20 +39,45 @@ namespace ImageLine.Utility
             return imagePath;
         }
 
-        public static void SaveFile(Stream fileStream, string filePath)
+
+        public static string CreateTempfilePath()
         {
-            //1.
+            var uploadFile = HttpContext.Current.Request.Files["file"];
+
+            string tempPath = ConfigurationManager.AppSettings["tempPath"];
+
+            if (!Directory.Exists(tempPath))
+            {
+                Directory.CreateDirectory(tempPath);
+            }
+
+            string imageName = Path.GetFileNameWithoutExtension(uploadFile.FileName) + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(uploadFile.FileName);
+
+            var tempImagePath = tempPath + "\\" + imageName;
+
+            return tempImagePath;
+        }
+
+        public static async Task SaveFileAsync(Stream fileStream, string filePath)
+        {
             using (var fs = new FileStream(filePath, FileMode.CreateNew))
             {
                 var bytes = new byte[fileStream.Length];
-                fileStream.Read(bytes, 0, (int)fileStream.Length);
-                fs.Write(bytes, 0, bytes.Count());
+                await fileStream.ReadAsync(bytes, 0, (int)fileStream.Length);
+                await fs.WriteAsync(bytes, 0, bytes.Count());
             }
         }
 
-        public static FileStream LoadFile(string filePath)
+        public static async Task<byte[]> LoadFileAsync(string filePath)
         {
-            return new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            using (FileStream SourceStream = File.Open(filePath, FileMode.Open))
+            {
+                byte[]  result = new byte[SourceStream.Length];
+                await SourceStream.ReadAsync(result, 0, (int)SourceStream.Length);
+                return result;
+            }
+
+           
         }
 
         /// <summary>
@@ -63,10 +89,18 @@ namespace ImageLine.Utility
         /// <param name="size">压缩后图片的最大大小</param>
         /// <param name="sfsc">是否是第一次调用</param>
         /// <returns></returns>
-        public static bool CompressImage(string sFile, string dFile, int dHeight = 300, int dWidth = 300, int flag = 90, int size = 300)
+        public static bool CompressImage(string sFile, string dFile , int size, int flag,  int dHeight = -1, int dWidth = -1)
         {
-            Image iSource = Image.FromFile(sFile); ImageFormat tFormat = iSource.RawFormat;
+            Image iSource = Image.FromFile(sFile);
 
+            ImageFormat tFormat = iSource.RawFormat;
+
+            if (dHeight == -1 && dWidth == -1)
+            {
+                dHeight = iSource.Height / 2;
+                dWidth = iSource.Width / 2;
+            }
+          
             int sW = 0, sH = 0;
             //按比例缩放
             Size tem_size = new Size(iSource.Width, iSource.Height);

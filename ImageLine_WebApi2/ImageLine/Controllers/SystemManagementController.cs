@@ -16,7 +16,7 @@ namespace ImageLine.Controllers
         //image crud
         [HttpPost]
         [Route("api/SystemManagement/image")]
-        public bool Upload()
+        public async Task<bool> UploadAsync()
         {
             try
             {
@@ -26,17 +26,24 @@ namespace ImageLine.Controllers
 
                     var theme = HttpContext.Current.Request["themeName"];
 
-                    //获得原始图和缩略图要保存的路径
+                    //获得原始图
+                    var imageInputStream = HttpContext.Current.Request.Files["file"].InputStream;
+
+                    //获得原始图临时路径
+                    var tempPath = CreateTempfilePath();
+
+                    //保存原始图
+                    await SaveFileAsync(imageInputStream, tempPath);
+
+
+                    //获得原图（轻压缩）和缩略图（重压缩）的路径
                     var imageOriginalPath = CreatefilePath(theme, ImageType.OriginalImage);
                     var imageSimplePath = CreatefilePath(theme, ImageType.SimpleImage);
 
-                    var imageInputStream = HttpContext.Current.Request.Files["file"].InputStream;
 
-                    //保存原始图
-                    SaveFile(imageInputStream, imageOriginalPath);
-
-                    //保存缩略图
-                    CompressImage(imageOriginalPath, imageSimplePath);
+                    //保存原图 和 缩略图
+                    CompressImage(tempPath, imageOriginalPath,300,90);
+                    CompressImage(tempPath, imageSimplePath,50,90,300,300);
 
 
                     //保存数据库
@@ -52,7 +59,16 @@ namespace ImageLine.Controllers
                     image.UserID = int.Parse(HttpContext.Current.Request["userID"]);
                     image.Updatetime = DateTime.Now;
                     context.Image.Add(image);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
+
+                     Task.Factory.StartNew(() =>
+                     {
+                         if (File.Exists(tempPath))
+                         {
+                             File.Delete(tempPath);
+                         }
+                     });
+
                     return true;
                 }
             }
@@ -242,9 +258,5 @@ namespace ImageLine.Controllers
                 return null;
             }
         }
-
-
-
-
     }
 }
