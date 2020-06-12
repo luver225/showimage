@@ -59,7 +59,7 @@ export class LicensingComponent implements OnInit {
     if(this.form.controls.license.value == null 
       || this.form.controls.confirmlicense.value == null
       || this.form.controls.license.value == ""
-      || this.form.controls.confirmconfirmlicensepassword.value == "")
+      || this.form.controls.confirmlicense.value == "")
       {
         this.message.warning("请输入许可码！");
         return;

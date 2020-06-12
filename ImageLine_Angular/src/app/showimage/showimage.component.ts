@@ -14,9 +14,6 @@ export class ShowimageComponent implements OnInit {
 
   @Input() isManagement: boolean;
 
-  isManagementToinfo: boolean;
-  carouselVis: boolean
-  isUser: boolean;
   themeList = [];
   monthList = [];
   imageLines = [];
@@ -24,7 +21,14 @@ export class ShowimageComponent implements OnInit {
   selectedTheme: { id: any; };
   selectedMonth: { value: any; };
   year:any;
-  hasimage: boolean;
+  
+  settingVis:boolean;
+  imageLinesVis:boolean;
+  carouselVis:boolean;
+  carouselVis_hasImageVis:boolean;
+  carouselVis_noImageVis:boolean;
+  isManagementModule:boolean;
+  carouselloading:boolean;
 
 
   constructor(private service: Service,
@@ -41,14 +45,20 @@ export class ShowimageComponent implements OnInit {
 
     this.imgCarouselList = [];
     this.themeList = [];
+
+    this.settingVis = false;
+    this.imageLinesVis = false;
     this.carouselVis = true;
-    this.hasimage = true;
+    this.carouselVis_hasImageVis = true;
+    this.carouselVis_noImageVis = false;
+
+    this.isManagementModule = this.isManagement;
 
     if (localStorage.getItem("IsUser") == "true" && !this.isManagement) {
-      this.isUser = true;
+      this.settingVis = true;
     }
     else {
-      this.isUser = false;
+      this.settingVis = false;
     }
 
 
@@ -58,25 +68,38 @@ export class ShowimageComponent implements OnInit {
 
     await this.getAllTheme();
 
+
+    if(this.isManagement)
+    {
+      this.carouselVis = false;
+      return;
+    }
+
+
+  
     this.getCarouselImage();
   }
 
 
   getCarouselImage() {
+    this.carouselloading = true;
+    
     this.service.GetCarouselImages(parseInt(localStorage.getItem("UserId"))).subscribe(
       (data: number[]) => {
 
         if (data == null) {
-          this.hasimage = false;
+          this.carouselVis_hasImageVis = false;
+          this.carouselVis_noImageVis = true;
           return;
         }
 
         if (data.length == 0) {
-          this.hasimage = false;
+          this.carouselVis_hasImageVis = false;
+          this.carouselVis_noImageVis = true;
           return;
         }
 
-        this.hasimage = true;
+        this.carouselVis_hasImageVis = true;
         console.log(data);
         data.forEach(element => {
           this.service.DownloadOriginal(element).subscribe(
@@ -84,6 +107,11 @@ export class ShowimageComponent implements OnInit {
               var reader = new FileReader();
               reader.onload = (event: any) => {
                 this.imgCarouselList.push(event.target.result);
+
+                if(this.imgCarouselList.length ==4)
+                {
+                  this.carouselloading = false;
+                }
               }
               reader.readAsDataURL(data);
             }
@@ -94,7 +122,6 @@ export class ShowimageComponent implements OnInit {
   }
 
   search() {
-
     if (this.selectedTheme == null
        && this.year == null
         && this.selectedMonth == null) {
@@ -130,20 +157,24 @@ export class ShowimageComponent implements OnInit {
     this.service.GetImageInfos(themeID, year, month, UserId).subscribe(
       (data: ShowImageDto[]) => {
 
-        if (data == null || data.length == 0) {
-          this.imageLines = [];
+        if (data == null || data.length == 0) 
+        {
+          
           this.message.info("无搜索结果！");
           return;
         }
 
+        this.imageLines = [];
         this.imageLines = data;
+
+        this.imageLinesVis = true;
         this.carouselVis = false;
 
         if (this.isManagement) {
-          this.isManagementToinfo = true;
+          this.isManagementModule = true;
         }
         else {
-          this.isManagementToinfo = false;
+          this.isManagementModule = false;
         }
 
       },

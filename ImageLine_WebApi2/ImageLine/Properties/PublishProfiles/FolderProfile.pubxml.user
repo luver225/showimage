@@ -16,10 +16,10 @@
       <publishTime>05/28/2020 01:07:29</publishTime>
     </File>
     <File Include="bin/ImageLine.dll">
-      <publishTime>06/03/2020 00:52:40</publishTime>
+      <publishTime>06/07/2020 10:55:36</publishTime>
     </File>
     <File Include="bin/ImageLine.pdb">
-      <publishTime>06/03/2020 00:52:40</publishTime>
+      <publishTime>06/07/2020 10:55:36</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>05/28/2020 01:07:30</publishTime>
@@ -211,7 +211,7 @@
       <publishTime>05/28/2020 01:07:29</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/02/2020 18:57:20</publishTime>
+      <publishTime>06/07/2020 10:55:36</publishTime>
     </File>
   </ItemGroup>
 </Project>

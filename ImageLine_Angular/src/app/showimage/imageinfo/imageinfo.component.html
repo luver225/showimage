@@ -15,7 +15,7 @@
       <textarea nz-input [(ngModel)]="description" disabled></textarea>
     </nz-form-item>
     <nz-form-item>
-      <button nz-button [nzType]="'primary'" (click)="showModal()"><span>查看大图</span></button>
+      <button nz-button [nzType]="'primary'" (click)="showModal()" [nzLoading]="isLoading"><span>查看大图</span></button>
       <button *ngIf="deleteimageVis" class="deleteimage" nz-button [nzType]="'primary'"
         (click)="deleteimage()"><span>删除</span></button>
       <nz-modal class="nz-modal" [nzFooter]=null [nzWidth]="nzWidth" [(nzVisible)]="isVisible"

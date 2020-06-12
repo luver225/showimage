@@ -21,7 +21,7 @@
         <button nz-button [nzType]="'primary'" (click)="search()"> 搜索</button>
       </div>
       <div nz-col nzSpan="11"> </div>
-      <div nz-col nzSpan="2" *ngIf="isUser">
+      <div nz-col nzSpan="2" *ngIf="settingVis">
         系统设置
         <a routerLink="/management" routerLinkActive="active">
           <i nz-icon nzType="setting" nzTheme="outline" class="settingicon"></i>
@@ -30,13 +30,14 @@
     </div>
 
   </nz-header>
-  <nz-content class="content" *ngIf="!carouselVis">
+
+  <nz-content class="content" *ngIf="imageLinesVis">
     <div nz-row>
       <div nz-col nzSpan="5"></div>
       <div nz-col nzSpan="14">
         <nz-timeline *ngFor="let image of imageLines" >
           <nz-timeline-item nzColor="#364d79">
-            <app-imageinfo [item]="image" (deleteEvent)="deleteSuccess()" [isManagement]="isManagementToinfo">
+            <app-imageinfo [item]="image" (deleteEvent)="deleteSuccess()" [isManagement]="isManagementModule">
             </app-imageinfo>
           </nz-timeline-item>
         </nz-timeline>
@@ -45,19 +46,34 @@
     </div>
   </nz-content>
 
-  <div *ngIf="isUser">
     <nz-content class="content" *ngIf="carouselVis">
       <h1 class="carouselTitle">
-        随机展示区域,请按条件搜索生成相册轨迹
+        默认展示区域,请按条件搜索生成相册轨迹(推荐按主题搜索)
       </h1>
-      <nz-carousel nzAutoPlay *ngIf="hasimage">
-        <div nz-carousel-content *ngFor="let imgCarouse of imgCarouselList">
-          <img [src]="imgCarouse" class="imgCarousel">
-        </div>
-      </nz-carousel>
-      <h1 class="noImage" *ngIf="!hasimage">
+
+
+      <div *ngIf="carouselVis_hasImageVis">
+
+        <nz-carousel nzAutoPlay  *ngIf="!carouselloading">
+          <div nz-carousel-content *ngFor="let imgCarouse of imgCarouselList">
+            <img [src]="imgCarouse" class="imgCarousel">
+          </div>
+        </nz-carousel>
+
+        <nz-carousel nzAutoPlay  *ngIf="carouselloading">
+          <div nz-carousel-content >
+            <nz-spin nzTip="加载中请稍后..." nzSimple [nzSize]="'large'"> JI</nz-spin>
+          </div>
+        </nz-carousel>
+
+      </div>
+      
+
+
+
+      <h1 class="noImage" *ngIf="carouselVis_noImageVis">
         目前系统中无图片,请去系统设置中上传图片！
       </h1>
     </nz-content>
-  </div>
+
 </nz-layout>

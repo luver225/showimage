@@ -25,6 +25,8 @@ export class ImageinfoComponent implements OnInit,OnChanges{
   deleteimageVis:boolean;
   isVisible = false;
   OriginalSrc: string;
+  isLoading:boolean;
+
 
   constructor(
     private service: Service,
@@ -37,6 +39,8 @@ export class ImageinfoComponent implements OnInit,OnChanges{
   }
  
   showModal(): void {
+    this.isLoading = true;
+
     this.service.DownloadOriginal(this.item.ImageID).subscribe(
       (data:Blob) =>{
         var reader = new FileReader();
@@ -44,11 +48,13 @@ export class ImageinfoComponent implements OnInit,OnChanges{
         this.OriginalSrc = event.target.result;
         this.isVisible = true;
         this.nzWidth = window.innerWidth;
+        this.isLoading = false;
        }
        reader.readAsDataURL(data);
       },
       (error:any) =>{
         this.message.error("网络发生异常 , 请重试！");
+        this.isLoading = false;
       }
     )
   }

@@ -14,7 +14,7 @@ export class Service {
   //webapi2  验证
   httpOptions= {headers: new HttpHeaders({})};
 
-  baseUrl:string = "http://localhost:25169/api";
+  baseUrl:string = "http://47.100.162.245:12351//api";
 
   UserLogin(userDto:UserDto)
   {

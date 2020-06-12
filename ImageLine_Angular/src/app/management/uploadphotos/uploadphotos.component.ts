@@ -27,7 +27,6 @@ export class UploadphotosComponent implements OnInit {
   themeList = [];
   selectedTheme:any;
   isUploadLoading:boolean;
-  uploadFile:Blob;
 
 
   constructor(
@@ -59,10 +58,8 @@ export class UploadphotosComponent implements OnInit {
     this.needimgVisibility = true;
   }
 
-
-
-
   upload() {
+
     if (this.selectFile == null) {
       this.message.warning("请选择一张图片！")
       return;
