@@ -1,3 +1,5 @@
+简单的相册管理系统,演示地址：47.100.162.245
+
 ## 技术栈
 - 前端 ：Angular + NG-ZORRO 
 - 后端 ：ASP.NET Web API 2 + EF + Mysql
